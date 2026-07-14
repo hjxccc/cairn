@@ -14,9 +14,12 @@
 
 ## 快速开始
 
+> 前置：`git` + `bash`（Windows 用 Git Bash）；`python3` 只有可选 hook 需要。含真实输出的完整教程：**[docs/tutorial.zh-CN.md](docs/tutorial.zh-CN.md)**。
+
 ```bash
 git clone https://github.com/hjxccc/cairn
 cd 你的项目 && /path/to/cairn/install.sh .    # 铺 .cairn/ 结构、模板和 hook
+ls .cairn/ && ./.cairn/scripts/mktmp.sh demo  # 验证：目录都在、能建任务
 ```
 
 再接上你的 agent（二选一）：

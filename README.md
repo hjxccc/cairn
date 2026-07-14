@@ -14,9 +14,12 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 ## Quick start
 
+> Prerequisites: `git` + `bash` (Git Bash on Windows). `python3` only for the optional root-guard hook. Full walkthrough with real outputs: **[docs/tutorial.md](docs/tutorial.md)**.
+
 ```bash
 git clone https://github.com/hjxccc/cairn
 cd your-project && /path/to/cairn/install.sh .    # scaffolds .cairn/, templates, hook
+ls .cairn/ && ./.cairn/scripts/mktmp.sh demo      # verify: dirs exist, task dir created
 ```
 
 Then wire up your agent (one of):
