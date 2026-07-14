@@ -1,0 +1,17 @@
+{
+  "_comment": "Merge the PreToolUse entry below into your project's .claude/settings.json hooks field (keep existing hooks; do not overwrite wholesale).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-root-scratch.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
