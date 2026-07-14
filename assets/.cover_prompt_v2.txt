@@ -1,0 +1,24 @@
+Flat vector comic illustration, digital illustration style with thick clean black outlines, bold flat color blocks, simple clean geometric shapes — looks like a polished SVG/vector illustration, NOT a photograph, NOT photorealistic, no photographic textures, no film grain.
+
+Background: deep dark navy night sky, hex color approximately #0D1117, with a few small soft stars. Vivid but harmonious accent colors that pop against the dark background, well suited for a GitHub dark-mode README banner. Wide cinematic 16:9 composition.
+
+Scene: A friendly cartoon software developer (simple flat-shaded human character, casual hoodie, small backpack) walking alongside a cute small rounded AI robot companion (flat-shaded, glowing simple round eyes, antenna) along a mountain trail, side by side, mid-stride, looking ahead together toward distant mountains.
+
+The trail/path itself is stylized as a glowing ribbon made of horizontal abstract line segments and small dot/dash marks resembling rows of code or markdown list lines — glowing soft blue-white light lines with small abstract bullet dashes, NOT real readable letters, purely abstract decorative line texture suggesting text, winding into the distance under their feet.
+
+Beside the trail, in the foreground, a neat stack of five rounded stones piled into a cairn (stacked pebble tower). IMPORTANT COLOR DIRECTION: all five stones must be warm, sun-lit tones from the amber / ochre / gold / terracotta family — like rocks glowing warm in sunset light. Do NOT use any cool blue, teal, cyan, gray, or purple stone colors. Each stone is a distinct warm shade but all clearly belong to the same warm amber-to-rust family, with a soft warm highlight on top as if lit by golden-hour light. From bottom to top the stones and their words are:
+- bottom stone: warm golden-amber color (hex approx #E8A33D), word on it: "TASK"
+- next stone: warm mustard-ochre color (hex approx #D4972B), word on it: "SOP"
+- next stone: burnt orange / terracotta color (hex approx #C9622A), word on it: "DECISION"
+- next stone: deep rust-red / warm brick-red color (hex approx #B8442A), word on it: "PITFALL"
+- top stone: bright golden amber color (hex approx #E3A008), word on it: "INDEX"
+
+Text-on-stone rendering for readability: on every stone, render the word as bold sans-serif letters carved/engraved in a deep dark brown / near-black color (hex approx #2B1B0E), like letters chiseled into the warm stone, OR alternatively bold white letters with a thick dark brown outline/shadow — choose whichever keeps strong, unmistakable contrast against that stone's warm background color, especially on the lighter golden-amber stones (TASK, INDEX) where light-on-light text must be avoided. Every word must remain crisp, bold, and easily legible.
+
+The robot companion is reaching up with one hand/claw, holding a sixth new warm-toned stone (same amber/ochre family), about to place it on top of the stack (gesture of adding the final capstone).
+
+In the far background, silhouettes of mountain ridgelines with two or three smaller simple cairn stone-stack silhouettes visible on the ridge; one of those distant cairns has a tiny simple checkered/striped construction pennant flag on a small stick planted next to it, suggesting "work in progress".
+
+Top-left area of the image: the word "cairn" as a clean minimalist lowercase sans-serif wordmark logo, solid white color, small and elegant, clearly legible, not overlapping other elements.
+
+CRITICAL TEXT RULES: The ONLY legible text anywhere in the entire image must be exactly these six words, each spelled correctly letter by letter: "cairn" (lowercase wordmark), "TASK", "SOP", "DECISION", "PITFALL", "INDEX". Do not render any other letters, words, numbers, or readable text anywhere else in the image. Double check spelling: D-E-C-I-S-I-O-N and P-I-T-F-A-L-L must be spelled exactly correctly with no missing, extra, swapped, or malformed letters. The markdown-line trail must remain purely abstract line/dash marks, never actual readable words.

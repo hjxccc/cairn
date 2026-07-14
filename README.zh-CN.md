@@ -10,9 +10,56 @@
 
 [English →](README.md)
 
+![cairn demo —— 起任务、收尾、grep 足迹](assets/demo.gif)
+
+## 快速开始
+
+```bash
+git clone https://github.com/hjxccc/cairn
+cd 你的项目 && /path/to/cairn/install.sh .    # 铺 .cairn/ 结构、模板和 hook
+```
+
+再接上你的 agent（二选一）：
+
+- **Claude Code**：把 `skill/` 拷到 `~/.claude/skills/cairn/`，并按 `hooks/settings-hooks.json` 注册根目录拦截 hook。之后"起个任务 / 记进度 / 收尾 / 以前处理过没 / 写个 SOP / 记个决策"agent 全自动接住。
+- **任意 agent**（Cursor / Codex / Windsurf…）：把 `templates/agent-snippet.md` 贴进你的 `AGENTS.md` / 规则文件即可——约定就是 markdown，不依赖 hook。
+
+日常就是对 agent 说四句话：**"起个任务 X"、"记进度"、"收尾"、"以前处理过没"**。
+
+## 管什么
+
+六类项目知识，共用一个模式（**一行索引 + 详情文件**）：
+
+| 类型 | 回答 | 位置 | 索引 |
+|---|---|---|---|
+| **任务留痕** | 做过什么、结论是什么 | `tasks/MM-DD-<topic>/` | `tasks/INDEX.md` |
+| **进度** | 做到哪、卡在哪 | 长任务内 `progress.md` | INDEX 的 🚧 标记 |
+| **SOP** | 怎么做 X（可重复步骤） | `sop/` | `sop/index.md` |
+| **决策** | 系统为什么长这样 | `docs/decisions/NNN-*.md` | 编号文件名 |
+| **坑与规约** | 什么会咬人 / 详细规范 | `spec/` | 自身 / AGENTS.md 指针行 |
+| **文档** | 方案、文章 | `docs/` | 可选 |
+
+```
+.cairn/
+├── tasks/
+│   ├── INDEX.md              # ⭐ 一行一任务，新的在上
+│   └── 07-14-payment-bug/
+│       ├── scratch/          # gitignore：调试脚本、数据、截图
+│       ├── progress.md       # 只有跨会话长任务才有
+│       └── summary.md
+├── sop/                      # ⭐ agent 可照跑的步骤化流程
+├── spec/
+│   ├── pitfalls.md           # 坑账：踩到当场记一行
+│   └── <主题>.md             # CLAUDE.md 放不下的详细规约——那边留指针，按需读
+├── docs/decisions/           # 轻量决策记录，带 superseded 链
+└── scripts/mktmp.sh          # 一条命令起任务
+```
+
+整个"项目记忆"都是可 grep 的纯文本：`grep 🚧 INDEX.md` 就是进度面板，`grep -i 支付 INDEX.md` 就是"以前处理过没"。
+
 ![cairn 工作原理](assets/architecture.svg)
 
----
+**典型样例**：[examples/sample-trail](examples/sample-trail)——一个虚构（完全脱敏）的支付团队两周足迹：7 个任务、一次重试风暴复盘、一篇"险情后补了前置检查"的 runbook、一次坑账就地修订、一条"为什么用幂等键不用 Redis 锁"的决策（含被否选项）。全部加起来约 150 行 markdown。
 
 ## 一切始于一次"尸检"
 
@@ -31,36 +78,7 @@
 
 **规律**：凡是需要纪律去喂养机器的，都死了；凡是"一个文件夹 + 一个习惯"的，都活了。真实的 agent 工作是即兴的——排障、补数、救火——不是 PRD 驱动的流水线。
 
-cairn 就是活下来的 20% 的提炼，外加尸检暴露出缺失的三块（决策记录、反馈闭环、坑账修订）。
-
-## 管什么
-
-六类项目知识，共用一个模式（**一行索引 + 详情文件**）：
-
-| 类型 | 回答 | 位置 | 索引 |
-|---|---|---|---|
-| **任务留痕** | 做过什么、结论是什么 | `tasks/MM-DD-<topic>/` | `tasks/INDEX.md` |
-| **进度** | 做到哪、卡在哪 | 长任务内 `progress.md` | INDEX 的 🚧 标记 |
-| **SOP** | 怎么做 X（可重复步骤） | `sop/` | `sop/index.md` |
-| **决策** | 系统为什么长这样 | `docs/decisions/NNN-*.md` | 编号文件名 |
-| **坑** | 什么会咬人 | `spec/pitfalls.md` | 自身 |
-| **文档** | 方案、文章 | `docs/` | 可选 |
-
-整个"项目记忆"都是可 grep 的纯文本：`grep 🚧 INDEX.md` 就是进度面板，`grep -i 支付 INDEX.md` 就是"以前处理过没"。
-
-**典型样例**：[examples/sample-trail](examples/sample-trail)——一个虚构（完全脱敏）的支付团队两周足迹：7 个任务、一次重试风暴复盘、一篇"险情后补了前置检查"的 runbook、一次坑账就地修订、一条"为什么用幂等键不用 Redis 锁"的决策（含被否选项）。全部加起来约 150 行 markdown。
-
-## 快速开始
-
-```bash
-git clone https://github.com/hjxccc/cairn && cd 你的项目
-/path/to/cairn/install.sh .        # 铺 .cairn/ 结构、拷模板和 hook
-```
-
-再接上你的 agent（二选一）：
-
-- **Claude Code**：把 `skill/` 拷到 `~/.claude/skills/cairn/`，并按 `hooks/settings-hooks.json` 注册根目录拦截 hook。之后"起个任务 / 记进度 / 收尾 / 以前处理过没 / 写个 SOP / 记个决策"agent 全自动接住。
-- **任意 agent**（Cursor / Codex / Windsurf…）：把 `templates/agent-snippet.md` 贴进你的 `AGENTS.md` / 规则文件即可——约定就是 markdown，不依赖 hook。
+cairn 就是活下来的 20% 的提炼，外加尸检暴露出缺失的三块（决策记录、反馈闭环、坑账修订）。完整故事见 [docs/philosophy.md](docs/philosophy.md)。
 
 ## 六条原则
 
@@ -84,7 +102,9 @@ git clone https://github.com/hjxccc/cairn && cd 你的项目
 
 ## FAQ
 
-**为什么个人层默认不进 git？** 任务足迹是个人的，共享仓库里人人提交等于互相污染。install.sh 默认 gitignore `tasks/` 和 `pitfalls.md`，确需共享的单文件 `git add -f` 显式入库；团队资产（sop/、decisions/）正常提交。（[决策 001](docs/decisions/001-personal-layer-not-in-git.md)）
+**为什么个人层默认不进 git？** 任务足迹是个人的，共享仓库里人人提交等于互相污染。install.sh 默认 gitignore `tasks/` 和 `pitfalls.md`，确需共享的单文件 `git add -f` 显式入库；团队资产（sop/、spec/<主题>.md、decisions/）正常提交。（[决策 001](docs/decisions/001-personal-layer-not-in-git.md)）
+
+**详细的编码规范/领域约定放哪？** 不放 AGENTS.md——那里只放 200 行内的"每次必须遵守"。详细规约放 `spec/<主题>.md`（进 git），AGENTS.md 留一行指针（"改 X 前先读 spec/x.md"），agent 按需读全文——要分层，不要自动注入。
 
 **为什么不做 CLI 工具？** 尸检结论：机器会死。cairn 是一个 40 行 bash 脚本 + 一个可选 hook + 约定。没有东西需要升级，没有东西会坏，拷走即迁移。
 

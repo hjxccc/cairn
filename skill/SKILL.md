@@ -29,7 +29,7 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 | Progress | where are we | task's `progress.md` + 🚧 in INDEX | INDEX markers | session end |
 | SOP | how to do X | `sop/<verb-topic>.md` | `sop/index.md` | 2nd time doing X |
 | Decision | why is it like this | `docs/decisions/NNN-<topic>.md` | numbered filenames | wrap-up check |
-| Pitfall | what bites | `spec/pitfalls.md` | itself | when bitten |
+| Pitfall / spec | what bites / detailed conventions | `spec/pitfalls.md` + `spec/<topic>.md` | itself / pointer in AGENTS.md | when bitten / when conventions form |
 | Docs | designs, write-ups | `docs/` | optional | on completion |
 
 ## 2. Task lifecycle (start → work → log → wrap up)
@@ -75,6 +75,7 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 | progress/next steps | `progress.md` + 🚧 | ❌ personal |
 | repeatable procedure | `sop/` + index line | ✅ team |
 | a pitfall | `spec/pitfalls.md` line | ❌ personal; graduate to share |
+| detailed conventions (coding standards, domain rules, API contracts) | `spec/<topic>.md` + one pointer line in AGENTS.md | ✅ team |
 | rationale for a major choice | `docs/decisions/NNN` | ✅ team |
 | always-on rules | CLAUDE.md / AGENTS.md (keep <200 lines) | ✅ |
 | designs/write-ups | `docs/` | ✅ |

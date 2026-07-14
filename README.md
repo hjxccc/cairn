@@ -10,9 +10,56 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 [中文文档 →](README.zh-CN.md)
 
+![cairn demo — start a task, wrap up, grep the trail](assets/demo.gif)
+
+## Quick start
+
+```bash
+git clone https://github.com/hjxccc/cairn
+cd your-project && /path/to/cairn/install.sh .    # scaffolds .cairn/, templates, hook
+```
+
+Then wire up your agent (one of):
+
+- **Claude Code**: copy `skill/` to `~/.claude/skills/cairn/` and merge `hooks/settings-hooks.json` into `.claude/settings.json` — the agent then handles "start a task", "log progress", "wrap up", "have we hit this before?", "write an SOP", "log a decision" automatically.
+- **Any agent** (Cursor / Codex / Windsurf...): paste `templates/agent-snippet.md` into your `AGENTS.md` / `CLAUDE.md` / rules file. The conventions are just markdown — no hooks required.
+
+Daily use is four phrases to your agent: *"start a task for X"*, *"log progress"*, *"wrap up"*, *"have we dealt with this before?"*
+
+## What it manages
+
+Six kinds of project knowledge, one shared pattern (*one-line index + detail files*):
+
+| Type | Answers | Lives in | Index |
+|---|---|---|---|
+| **Task trail** | what did we do, what was the conclusion | `tasks/MM-DD-<topic>/` | `tasks/INDEX.md` |
+| **Progress** | where are we, what's blocked | `progress.md` inside long tasks | 🚧 markers in INDEX |
+| **SOPs** | how do we do X (repeatable steps) | `sop/` | `sop/index.md` |
+| **Decisions** | why is the system like this | `docs/decisions/NNN-*.md` | numbered filenames |
+| **Pitfalls & specs** | what bites / detailed conventions | `spec/` | itself / pointer in AGENTS.md |
+| **Docs** | designs, write-ups | `docs/` | optional |
+
+```
+.cairn/
+├── tasks/
+│   ├── INDEX.md              # ⭐ one line per task, newest on top
+│   └── 07-14-payment-bug/
+│       ├── scratch/          # gitignored: debug scripts, dumps, screenshots
+│       ├── progress.md       # only for multi-session tasks
+│       └── summary.md
+├── sop/                      # ⭐ step-by-step procedures agents can execute
+├── spec/
+│   ├── pitfalls.md           # one line per pitfall, append when bitten
+│   └── <topic>.md            # conventions too big for AGENTS.md — pointer there, read on demand
+├── docs/decisions/           # lightweight ADRs with supersede links
+└── scripts/mktmp.sh          # create a task dir in one command
+```
+
+Your whole "project memory" is greppable text. `grep 🚧 INDEX.md` is your progress dashboard. `grep -i payment INDEX.md` is your "have we solved this before?".
+
 ![how the trail works](assets/architecture.svg)
 
----
+**See it in action:** [examples/sample-trail](examples/sample-trail) — a fictional (fully anonymized) two-week trail from a payments team: seven tasks, a retry-storm postmortem, a runbook with a pre-check added after a near-miss, an in-place pitfall revision, and a "why idempotency keys, not Redis locks" decision with the rejected options spelled out. The whole thing is ~150 lines of markdown.
 
 ## The autopsy that started this
 
@@ -31,52 +78,7 @@ We ran a full-featured AI workflow framework on a production multi-repo project 
 
 **The pattern:** everything that required discipline to feed the machine died. Everything that was just *a folder and a habit* survived. Real agent-driven work is improvisational — debugging, backfilling, firefighting — not a PRD-driven assembly line.
 
-cairn is the surviving 20%, distilled, plus the three pieces the autopsy showed were missing.
-
-## What it manages
-
-Six kinds of project knowledge, one shared pattern (*one-line index + detail files*):
-
-| Type | Answers | Lives in | Index |
-|---|---|---|---|
-| **Task trail** | what did we do, what was the conclusion | `tasks/MM-DD-<topic>/` | `tasks/INDEX.md` |
-| **Progress** | where are we, what's blocked | `progress.md` inside long tasks | 🚧 markers in INDEX |
-| **SOPs** | how do we do X (repeatable steps) | `sop/` | `sop/index.md` |
-| **Decisions** | why is the system like this | `docs/decisions/NNN-*.md` | numbered filenames |
-| **Pitfalls** | what bites | `spec/pitfalls.md` | itself |
-| **Docs** | designs, write-ups | `docs/` | optional |
-
-```
-.cairn/
-├── tasks/
-│   ├── INDEX.md              # ⭐ one line per task, newest on top
-│   └── 07-14-payment-bug/
-│       ├── scratch/          # gitignored: debug scripts, dumps, screenshots
-│       ├── progress.md       # only for multi-session tasks
-│       └── summary.md
-├── sop/                      # ⭐ step-by-step procedures agents can execute
-├── spec/pitfalls.md          # one line per pitfall, append when bitten
-├── docs/decisions/           # lightweight ADRs with supersede links
-└── scripts/mktmp.sh          # create a task dir in one command
-```
-
-Your whole "project memory" is greppable text. `grep 🚧 INDEX.md` is your progress dashboard. `grep -i payment INDEX.md` is your "have we solved this before?".
-
-**See it in action:** [examples/sample-trail](examples/sample-trail) — a fictional (fully anonymized) two-week trail from a payments team: seven tasks, a retry-storm postmortem, a runbook with a pre-check added after a near-miss, an in-place pitfall revision, and a "why idempotency keys, not Redis locks" decision with the rejected options spelled out. The whole thing is ~150 lines of markdown.
-
-## Quick start
-
-```bash
-git clone https://github.com/hjxccc/cairn && cd your-project
-/path/to/cairn/install.sh .          # scaffolds .cairn/, copies templates & hook
-```
-
-Then wire up your agent (one of):
-
-- **Claude Code**: copy `skill/` to `~/.claude/skills/cairn/` — the agent handles "start a task", "log progress", "wrap up", "have we hit this before?", "write an SOP", "log a decision" automatically. Register the root-guard hook from `hooks/settings-hooks.json`.
-- **Any agent** (Cursor / Codex / Windsurf...): paste `templates/agent-snippet.md` into your `AGENTS.md` / `CLAUDE.md` / rules file. The conventions are just markdown — no hooks required.
-
-Daily use is four phrases to your agent: *"start a task for X"*, *"log progress"*, *"wrap up"*, *"have we dealt with this before?"*
+cairn is the surviving 20%, distilled, plus the three pieces the autopsy showed were missing. Full story in [docs/philosophy.md](docs/philosophy.md).
 
 ## The six principles
 
@@ -105,7 +107,10 @@ On the engineering side it's the repo-native minimal version of practices large 
 ## FAQ
 
 **Why isn't the personal layer committed by default?**
-Task trails are *your* footprints; on a shared repo, everyone committing theirs is pollution. `install.sh` gitignores `tasks/` and `pitfalls.md`; share a specific file deliberately with `git add -f`. Team assets (`sop/`, `docs/`, decisions) are committed normally. ([decision 001](docs/decisions/001-personal-layer-not-in-git.md))
+Task trails are *your* footprints; on a shared repo, everyone committing theirs is pollution. `install.sh` gitignores `tasks/` and `pitfalls.md`; share a specific file deliberately with `git add -f`. Team assets (`sop/`, `spec/<topic>.md`, decisions) are committed normally. ([decision 001](docs/decisions/001-personal-layer-not-in-git.md))
+
+**Where do detailed coding conventions go?**
+Not into AGENTS.md — keep that under 200 lines of always-on rules. Detailed conventions live in `spec/<topic>.md` (committed), with a one-line pointer in AGENTS.md ("before touching X, read spec/x.md"). The agent reads the full text on demand — layering without auto-injection.
 
 **Why no CLI tool?**
 Because the autopsy says machinery dies. cairn is one 40-line bash script, one optional hook, and conventions. Nothing to update, nothing to break, trivially portable.
