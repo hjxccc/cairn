@@ -8,6 +8,8 @@
 
 [English →](README.md)
 
+![cairn 工作原理](assets/architecture.svg)
+
 ---
 
 ## 一切始于一次"尸检"
@@ -44,10 +46,12 @@ cairn 就是活下来的 20% 的提炼，外加尸检暴露出缺失的三块（
 
 整个"项目记忆"都是可 grep 的纯文本：`grep 🚧 INDEX.md` 就是进度面板，`grep -i 支付 INDEX.md` 就是"以前处理过没"。
 
+**典型样例**：[examples/sample-trail](examples/sample-trail)——一个虚构（完全脱敏）的支付团队两周足迹：7 个任务、一次重试风暴复盘、一篇"险情后补了前置检查"的 runbook、一次坑账就地修订、一条"为什么用幂等键不用 Redis 锁"的决策（含被否选项）。全部加起来约 150 行 markdown。
+
 ## 快速开始
 
 ```bash
-git clone https://github.com/YOU/cairn && cd 你的项目
+git clone https://github.com/hjxccc/cairn && cd 你的项目
 /path/to/cairn/install.sh .        # 铺 .cairn/ 结构、拷模板和 hook
 ```
 

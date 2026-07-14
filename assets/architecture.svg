@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" font-family="-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8B949E"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="800" rx="14" fill="#0B0E14"/>
+
+  <!-- title -->
+  <text x="48" y="52" fill="#E6EDF3" font-size="24" font-weight="700">cairn · how the trail works</text>
+  <text x="48" y="76" fill="#9DA7B3" font-size="14">six content types · one pattern: one-line index + detail files · markdown + git, nothing else</text>
+
+  <!-- ==================== personal layer ==================== -->
+  <rect x="44" y="100" width="560" height="440" rx="12" fill="#0F1420" stroke="#3D4657" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <text x="68" y="130" fill="#9DA7B3" font-size="13" font-weight="700" letter-spacing="1">PERSONAL LAYER · gitignored by default · share via git add -f</text>
+
+  <!-- task box -->
+  <rect x="68" y="146" width="512" height="168" rx="10" fill="#131A28" stroke="#4C8DFF" stroke-width="1.6"/>
+  <text x="88" y="176" fill="#4C8DFF" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">tasks/03-18-payment-timeout-storm/</text>
+  <text x="88" y="203" fill="#E6EDF3" font-size="14" font-family="ui-monospace,Consolas,monospace">scratch/</text>
+  <text x="200" y="203" fill="#9DA7B3" font-size="13">debug dumps — dies with the task, never in git</text>
+  <text x="88" y="230" fill="#E6EDF3" font-size="14" font-family="ui-monospace,Consolas,monospace">progress.md</text>
+  <text x="200" y="230" fill="#9DA7B3" font-size="13">goal · done · next · blocked (multi-session only)</text>
+  <text x="88" y="257" fill="#E6EDF3" font-size="14" font-family="ui-monospace,Consolas,monospace">summary.md</text>
+  <text x="200" y="257" fill="#9DA7B3" font-size="13">one-page conclusion, written at wrap-up</text>
+  <text x="88" y="292" fill="#6E7A8A" font-size="12.5">created by one command:  ./cairn/scripts/mktmp.sh &lt;topic&gt;</text>
+
+  <!-- arrow task -> index -->
+  <line x1="324" y1="314" x2="324" y2="366" stroke="#8B949E" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="338" y="345" fill="#E3A008" font-size="13" font-weight="600">wrap up → stack one line on top</text>
+
+  <!-- index box -->
+  <rect x="68" y="370" width="512" height="88" rx="10" fill="#131A28" stroke="#E3A008" stroke-width="1.6"/>
+  <text x="88" y="397" fill="#E3A008" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">tasks/INDEX.md</text>
+  <text x="88" y="421" fill="#E6EDF3" font-size="12.5" font-family="ui-monospace,Consolas,monospace">- 🚧 03-22-checkout-ab-migration — v2 at 25%, healthy</text>
+  <text x="88" y="442" fill="#E6EDF3" font-size="12.5" font-family="ui-monospace,Consolas,monospace">- 03-18-payment-timeout-storm — our own retry storm; capped+jitter</text>
+
+  <!-- pitfalls box -->
+  <rect x="68" y="474" width="512" height="52" rx="10" fill="#131A28" stroke="#F0716B" stroke-width="1.6"/>
+  <text x="88" y="500" fill="#F0716B" font-size="14" font-weight="700" font-family="ui-monospace,Consolas,monospace">spec/pitfalls.md</text>
+  <text x="258" y="500" fill="#9DA7B3" font-size="13">one line when bitten · revise in place, never duplicate</text>
+
+  <!-- ==================== team layer ==================== -->
+  <rect x="676" y="100" width="560" height="440" rx="12" fill="#0F1420" stroke="#3D4657" stroke-width="1.6"/>
+  <text x="700" y="130" fill="#9DA7B3" font-size="13" font-weight="700" letter-spacing="1">TEAM LAYER · committed · travels with git clone</text>
+
+  <!-- sop box -->
+  <rect x="700" y="146" width="512" height="108" rx="10" fill="#131A28" stroke="#3FB950" stroke-width="1.6"/>
+  <text x="720" y="176" fill="#3FB950" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">sop/</text>
+  <text x="790" y="176" fill="#E6EDF3" font-size="14" font-weight="600">how we do X — agents follow verbatim</text>
+  <text x="720" y="203" fill="#9DA7B3" font-size="13">when-to-use · pre-checks · steps + expected output · verify · rollback</text>
+  <text x="720" y="230" fill="#6E7A8A" font-size="12.5">check sop/index.md before doing — follow, don't re-explore</text>
+
+  <!-- decisions box -->
+  <rect x="700" y="270" width="512" height="108" rx="10" fill="#131A28" stroke="#A371F7" stroke-width="1.6"/>
+  <text x="720" y="300" fill="#A371F7" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">docs/decisions/NNN-*.md</text>
+  <text x="720" y="327" fill="#E6EDF3" font-size="14" font-weight="600">why the system is like this</text>
+  <text x="720" y="354" fill="#9DA7B3" font-size="13">options incl. rejected ones · superseded-by chain · one page max</text>
+
+  <!-- rules box -->
+  <rect x="700" y="394" width="512" height="60" rx="10" fill="#131A28" stroke="#8B949E" stroke-width="1.6"/>
+  <text x="720" y="420" fill="#E6EDF3" font-size="14" font-weight="700" font-family="ui-monospace,Consolas,monospace">AGENTS.md / CLAUDE.md</text>
+  <text x="720" y="442" fill="#9DA7B3" font-size="13">always-on rules only — keep under 200 lines, it is not a knowledge base</text>
+
+  <!-- docs box -->
+  <rect x="700" y="470" width="512" height="56" rx="10" fill="#131A28" stroke="#8B949E" stroke-width="1.2"/>
+  <text x="720" y="496" fill="#E6EDF3" font-size="14" font-weight="700" font-family="ui-monospace,Consolas,monospace">docs/</text>
+  <text x="800" y="496" fill="#9DA7B3" font-size="13">designs, write-ups, anything narrative</text>
+
+  <!-- ==================== upgrade-chain arrows ==================== -->
+  <line x1="580" y1="200" x2="700" y2="200" stroke="#3FB950" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="590" y="190" fill="#3FB950" font-size="12" font-weight="600">done twice? → SOP</text>
+
+  <line x1="580" y1="324" x2="700" y2="324" stroke="#A371F7" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="584" y="314" fill="#A371F7" font-size="12" font-weight="600">"why?" in 6 months →</text>
+
+  <line x1="580" y1="500" x2="700" y2="424" stroke="#8B949E" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="588" y="472" fill="#9DA7B3" font-size="12" font-weight="600">recurring? → rule</text>
+
+  <!-- ==================== retrieval band ==================== -->
+  <rect x="44" y="566" width="1192" height="186" rx="12" fill="#0F1420" stroke="#3D4657" stroke-width="1.6"/>
+  <text x="68" y="598" fill="#E6EDF3" font-size="15" font-weight="700">RETRIEVE ON DEMAND · inject nothing by default — forgetting is free</text>
+
+  <rect x="68" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="86" y="644" fill="#E3A008" font-size="13" font-family="ui-monospace,Consolas,monospace">grep "🚧|⏸" INDEX.md</text>
+  <text x="86" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">where are we?</text>
+  <text x="86" y="692" fill="#9DA7B3" font-size="12">the progress dashboard, zero upkeep</text>
+
+  <rect x="360" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="378" y="644" fill="#4C8DFF" font-size="13" font-family="ui-monospace,Consolas,monospace">grep -i payment INDEX.md</text>
+  <text x="378" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">have we solved this before?</text>
+  <text x="378" y="692" fill="#9DA7B3" font-size="12">hit → read that task's summary</text>
+
+  <rect x="652" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="670" y="644" fill="#3FB950" font-size="13" font-family="ui-monospace,Consolas,monospace">cat sop/index.md</text>
+  <text x="670" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">how do we do X?</text>
+  <text x="670" y="692" fill="#9DA7B3" font-size="12">follow the runbook, don't re-explore</text>
+
+  <rect x="944" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="962" y="644" fill="#A371F7" font-size="13" font-family="ui-monospace,Consolas,monospace">ls docs/decisions/</text>
+  <text x="962" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">why is it like this?</text>
+  <text x="962" y="692" fill="#9DA7B3" font-size="12">exactly one current answer per choice</text>
+
+  <text x="48" y="782" fill="#6E7A8A" font-size="12">github.com/hjxccc/cairn · a few hundred lines of greppable text is the whole memory system — that's the point</text>
+</svg>

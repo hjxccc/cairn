@@ -8,6 +8,8 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 [中文文档 →](README.zh-CN.md)
 
+![how the trail works](assets/architecture.svg)
+
 ---
 
 ## The autopsy that started this
@@ -58,10 +60,12 @@ Six kinds of project knowledge, one shared pattern (*one-line index + detail fil
 
 Your whole "project memory" is greppable text. `grep 🚧 INDEX.md` is your progress dashboard. `grep -i payment INDEX.md` is your "have we solved this before?".
 
+**See it in action:** [examples/sample-trail](examples/sample-trail) — a fictional (fully anonymized) two-week trail from a payments team: seven tasks, a retry-storm postmortem, a runbook with a pre-check added after a near-miss, an in-place pitfall revision, and a "why idempotency keys, not Redis locks" decision with the rejected options spelled out. The whole thing is ~150 lines of markdown.
+
 ## Quick start
 
 ```bash
-git clone https://github.com/YOU/cairn && cd your-project
+git clone https://github.com/hjxccc/cairn && cd your-project
 /path/to/cairn/install.sh .          # scaffolds .cairn/, copies templates & hook
 ```
 
