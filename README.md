@@ -1,3 +1,5 @@
+![cairn — someone was here, this path works](assets/cover.png)
+
 # 🪨 cairn
 
 > The 20% of AI-coding-workflow frameworks that survives contact with real work.
