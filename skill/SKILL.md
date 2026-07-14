@@ -34,7 +34,7 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 
 ## 2. Task lifecycle (start → work → log → wrap up)
 
-**Locate the project first (multi-project rule)**: walk up from the cwd to the **nearest** `.cairn/` or `.trellis/` — the task belongs to that project (same scoping as `.git`; one instance per project, no cross-pollution). Parent repo + sub-repos: cross-repo tasks go to the parent; single-repo tasks go to that sub-repo if it has cairn installed, else fall up to the parent. Nothing found → offer to bootstrap. When one session touches multiple projects, state the target project before writing.
+**Locate the project first (multi-project rule)**: walk up from the cwd to the **nearest** `.cairn/` or `.trellis/` — the task belongs to that project (same scoping as `.git`; one instance per project, no cross-pollution). Parent repo + sub-repos: cross-repo tasks go to the parent; single-repo tasks go to that sub-repo if it has cairn installed, else fall up to the parent. Nothing found → offer to bootstrap. 🔴 CHECKPOINT: when one session touches multiple projects, state the target project before ANY write — a stone stacked in the wrong project is worse than none.
 
 **Start**: `cd "$(./<base>/scripts/mktmp.sh <topic>)"` — whichever project's mktmp you call is where the task lands. If the topic feels familiar, do §5 history lookup first.
 
@@ -84,9 +84,21 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 
 ## 7. Bootstrap a new repo ("install cairn")
 
-Run `install.sh <repo>` from the cairn checkout (creates structure, copies templates/scripts/hook, patches .gitignore), then paste `templates/agent-snippet.md` into the repo's agent rules file and merge `hooks/settings-hooks.json` into `.claude/settings.json`. Verify: writing `_test.py` at root gets blocked; `mktmp.sh demo` creates a dir.
+Run `install.sh <repo>` from the cairn checkout (creates structure, copies templates/scripts/hook, patches .gitignore), then paste `templates/agent-snippet.md` into the repo's agent rules file. 🔴 CHECKPOINT: merge `hooks/settings-hooks.json` into `.claude/settings.json` **append-only** — read the existing file first; wholesale overwrite kills the project's existing hooks. Verify: writing `_test.py` at root gets blocked; `mktmp.sh demo` creates a dir.
 
-## 8. Hard rules
+## 8. If it fails (fallbacks)
+
+| Symptom | Fix |
+|---|---|
+| mktmp.sh missing / not executable | `mkdir -p <base>/tasks/MM-DD-<topic>/scratch` by hand; re-copy the script from the cairn checkout after |
+| INDEX.md missing / deleted | rebuild the header from `templates/INDEX.md`, stack this task's line; do not backfill history |
+| root-scratch guard not firing | check the PreToolUse entry in `.claude/settings.json` and that the hook file exists; restore whichever is missing |
+| dashboard grep matches header text | use the anchored form `grep "^- 🚧\|^- ⏸"`; still noisy = an entry doesn't start with `- `, fix its format |
+| same-day same-topic dir already exists | mktmp reuses it — use it, never create a variant dir |
+| personal-layer file was committed in the past | `git rm --cached <file>` (keeps the working copy) restores the ignore |
+| project's other hooks broke after settings merge | it was overwritten wholesale — restore settings from git, redo an append-only merge |
+
+## 9. Hard rules
 
 - Zero throwaway files at repo root; `scratch/` and >1MB data files never in git.
 - Personal layer not committed by default; sharing must be explicit `git add -f`, never bulk.
