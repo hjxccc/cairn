@@ -2,7 +2,7 @@
 
 > One line per task, **newest on top**. Stack a line when you wrap up.
 > Long-running tasks get a leading 🚧 (in progress) or ⏸ (paused, waiting on something external).
-> In-flight work: `grep "🚧\|⏸" INDEX.md` · History: `grep -i <keyword> INDEX.md`
+> In-flight work: `grep "^- 🚧\|^- ⏸" INDEX.md` · History: `grep -i <keyword> INDEX.md`
 
 ## Entries
 

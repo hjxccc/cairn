@@ -47,7 +47,7 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 
 ## 3. Progress ("where are we?")
 
-- All in-flight work: `grep "🚧\|⏸" <base>/tasks/INDEX.md` — that's the dashboard, zero upkeep.
+- All in-flight work: `grep "^- 🚧\|^- ⏸" <base>/tasks/INDEX.md` (anchored, so header text doesn't match) — that's the dashboard, zero upkeep.
 - Resume a task: read its `progress.md` "Next"/"Blocked".
 - Stale 🚧 markers surface in one grep; fix on sight. Never create a separate current-task pointer file.
 
