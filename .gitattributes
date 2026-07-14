@@ -1,0 +1,6 @@
+# Shell/Python must stay LF or they break on Linux checkouts from Windows
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.md text
+*.json text
