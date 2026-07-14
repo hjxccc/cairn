@@ -34,7 +34,9 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 
 ## 2. Task lifecycle (start → work → log → wrap up)
 
-**Start**: `cd "$(./<base>/scripts/mktmp.sh <topic>)"`. If the topic feels familiar, do §5 history lookup first.
+**Locate the project first (multi-project rule)**: walk up from the cwd to the **nearest** `.cairn/` or `.trellis/` — the task belongs to that project (same scoping as `.git`; one instance per project, no cross-pollution). Parent repo + sub-repos: cross-repo tasks go to the parent; single-repo tasks go to that sub-repo if it has cairn installed, else fall up to the parent. Nothing found → offer to bootstrap. When one session touches multiple projects, state the target project before writing.
+
+**Start**: `cd "$(./<base>/scripts/mktmp.sh <topic>)"` — whichever project's mktmp you call is where the task lands. If the topic feels familiar, do §5 history lookup first.
 
 **Work**: all throwaway artifacts into `scratch/` (the root-guard hook enforces this).
 
