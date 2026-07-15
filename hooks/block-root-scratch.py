@@ -14,6 +14,13 @@ import re
 import sys
 from pathlib import Path
 
+# Windows consoles default to gbk; writing CJK/emoji would UnicodeEncodeError → force utf-8
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
+
 # ── generic patterns (cross-project, keep) ──────────────────────────────
 HARD_BLOCK_PATTERNS = [
     re.compile(r"^_[^/\\]+\.(py|sql|csv|tsv|json|log|txt|xml|yml|yaml|md|sh)$"),

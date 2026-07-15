@@ -85,7 +85,13 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 
 ## 7. Bootstrap a new repo ("install cairn")
 
-Run `install.sh <repo>` from the cairn checkout (creates structure, copies templates/scripts/hook, patches .gitignore), then paste `templates/agent-snippet.md` into the repo's agent rules file. 🔴 CHECKPOINT: merge `hooks/settings-hooks.json` into `.claude/settings.json` **append-only** — read the existing file first; wholesale overwrite kills the project's existing hooks. Verify: writing `_test.py` at root gets blocked; `mktmp.sh demo` creates a dir.
+**Fast path — one command, deterministic. Do NOT hand-create the tree file-by-file (that's slow and error-prone):**
+
+```bash
+./install.sh <repo>          # from the cairn checkout; idempotent, never overwrites
+```
+
+It scaffolds the whole `.cairn/` structure, copies templates/scripts/hook, and patches `.gitignore` in one shot. See `examples/sample-trail/` for what a filled-in trail looks like across all six content types. Then paste `templates/agent-snippet.md` into the repo's agent rules file. 🔴 CHECKPOINT: merge `hooks/settings-hooks.json` into `.claude/settings.json` **append-only** — read the existing file first; wholesale overwrite kills the project's existing hooks. Verify: writing `_test.py` at root gets blocked; `mktmp.sh demo` creates a dir. Manual mkdir only as a fallback if install.sh is unreachable (§8).
 
 ## 8. If it fails (fallbacks)
 
