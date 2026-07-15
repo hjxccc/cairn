@@ -2,7 +2,7 @@
 
 # 🪨 cairn
 
-> The 20% of AI-coding-workflow frameworks that survives contact with real work.
+> An AI agent's memory shouldn't live in the chat — it should live in the repo.
 
 **cairn** is a markdown-native memory & progress layer for AI coding agents (Claude Code, Cursor, Codex, ...). No framework. No runtime. No database. Just directory conventions that keep working after the novelty wears off.
 
@@ -14,21 +14,26 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 ## Quick start
 
-**One command to install** (idempotent, never overwrites):
+**The AI-era install — just tell your agent, in one sentence.** In Claude Code, Codex, or any skill-aware agent, say:
 
-```bash
-git clone https://github.com/hjxccc/cairn
-cairn/install.sh /path/to/your-project
-```
+> Install cairn and set it up in this project: https://github.com/hjxccc/cairn
 
-**Then it's one sentence to your agent.** With cairn wired in, Claude Code / Codex does the mechanics — creates the task dir, stacks the INDEX line, greps history, logs pitfalls — while you just talk:
+It copies the skill, scaffolds `.cairn/` into your project, and wires the root-guard hook. After that, daily use is plain talk too — it creates the task dir, stacks the INDEX line, greps history, logs pitfalls while you say:
 
 > "start a task: fix the login timeout" → "log progress" → "wrap up" → "have we dealt with this before?"
 
-Wire it up once:
+<details>
+<summary><b>Prefer to install by hand / no agent?</b></summary>
+
+```bash
+git clone https://github.com/hjxccc/cairn
+cairn/install.sh /path/to/your-project          # idempotent, never overwrites
+```
 
 - **Claude Code**: copy `skill/` to `~/.claude/skills/cairn/` and merge `hooks/settings-hooks.json` into `.claude/settings.json` (append-only).
-- **Any agent** (Cursor / Codex / Windsurf...): paste `templates/agent-snippet.md` into your `AGENTS.md`. The conventions are just markdown — no hooks required.
+- **Any agent** (Cursor / Windsurf...): paste `templates/agent-snippet.md` into your `AGENTS.md` — the conventions are just markdown, no hooks required.
+
+</details>
 
 > Prerequisites: `git` + `bash` (Git Bash on Windows); `python3` only for the optional root-guard hook. Full walkthrough with real outputs: [docs/tutorial.md](docs/tutorial.md).
 

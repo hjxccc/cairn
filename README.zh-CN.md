@@ -2,7 +2,7 @@
 
 # 🪨 cairn（垒石）
 
-> AI 编码工作流框架里，真正能在实战中活下来的那 20%。
+> AI 的记忆不该活在对话里，该活在仓库里。
 
 **cairn** 是给 AI 编码 agent（Claude Code / Cursor / Codex …）用的 markdown 原生记忆与进度层。没有框架、没有运行时、没有数据库——只有一套"新鲜感褪去之后仍然在用"的目录约定。
 
@@ -14,21 +14,26 @@
 
 ## 快速开始
 
-**一条命令装好**（幂等，不覆盖已有文件）：
+**AI 时代的装法——对着 agent 说一句话就行。** 在 Claude Code、Codex 等支持 skill 的 agent 里，直接说：
 
-```bash
-git clone https://github.com/hjxccc/cairn
-cairn/install.sh /path/to/你的项目
-```
+> 帮我安装 cairn 并在当前项目落地：https://github.com/hjxccc/cairn
 
-**然后就交给 agent——一句话的事。** 接了 cairn 的 Claude Code / Codex，日常你只管说人话，它自动建任务目录、垒 INDEX、查历史、记坑：
+它会自己拷 skill、把 `.cairn/` 结构铺进项目、接好根目录拦截 hook。装完之后日常也只说人话，它自动建任务目录、垒 INDEX、查历史、记坑：
 
 > 「起个任务：修登录超时」 → 「记一下进度」 → 「收尾」 → 「这个以前处理过没？」
 
-接一次即可：
+<details>
+<summary><b>想手动装 / 没接 agent？</b></summary>
+
+```bash
+git clone https://github.com/hjxccc/cairn
+cairn/install.sh /path/to/你的项目          # 幂等，不覆盖已有文件
+```
 
 - **Claude Code**：把 `skill/` 拷到 `~/.claude/skills/cairn/`，再把 `hooks/settings-hooks.json` 合并进 `.claude/settings.json`（只追加）。
-- **任意 agent**（Cursor / Codex / Windsurf…）：把 `templates/agent-snippet.md` 贴进 `AGENTS.md` 即可——约定就是 markdown，不依赖 hook。
+- **任意 agent**（Cursor / Windsurf…）：把 `templates/agent-snippet.md` 贴进 `AGENTS.md`——约定就是 markdown，不依赖 hook。
+
+</details>
 
 > 前置：`git` + `bash`（Windows 用 Git Bash）；`python3` 只有可选的根目录拦截 hook 才需要。完整教程（含真实输出）见 [docs/tutorial.zh-CN.md](docs/tutorial.zh-CN.md)。
 
