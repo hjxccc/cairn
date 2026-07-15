@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" font-family="-apple-system,'PingFang SC','Microsoft YaHei','Noto Sans SC','Segoe UI',Roboto,sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8B949E"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" rx="16" fill="#0B0E14"/>
+
+  <!-- title -->
+  <text x="64" y="66" fill="#E6EDF3" font-size="27" font-weight="700">cairn · 三个痛点，三个仓库原生的答案</text>
+  <text x="64" y="98" fill="#9DA7B3" font-size="15">markdown + git · 无运行时 · 无数据库 · 无常驻状态机 —— 平时不喂，用时 grep</text>
+
+  <!-- column captions -->
+  <text x="64" y="150" fill="#6E7A8A" font-size="13" font-weight="700" letter-spacing="1">开发痛点</text>
+  <text x="732" y="150" fill="#6E7A8A" font-size="13" font-weight="700" letter-spacing="1">cairn 的做法（痕迹留在 repo）</text>
+
+  <!-- ============ row 1 (blue) ============ -->
+  <g>
+    <rect x="64" y="166" width="520" height="128" rx="12" fill="#131A28" stroke="#4C8DFF" stroke-width="1.6"/>
+    <text x="92" y="212" fill="#4C8DFF" font-size="30" font-weight="800">①</text>
+    <text x="140" y="208" fill="#E6EDF3" font-size="21" font-weight="700">新会话就失忆</text>
+    <text x="140" y="240" fill="#9DA7B3" font-size="14.5">背景、规范、上次的结论，都困在上一段对话里，</text>
+    <text x="140" y="264" fill="#9DA7B3" font-size="14.5">新开的会话看不到。</text>
+
+    <line x1="596" y1="230" x2="712" y2="230" stroke="#8B949E" stroke-width="1.8" marker-end="url(#a)"/>
+
+    <rect x="716" y="166" width="500" height="128" rx="12" fill="#131A28" stroke="#4C8DFF" stroke-width="1.6"/>
+    <text x="744" y="206" fill="#E6EDF3" font-size="18" font-weight="700">痕迹沉在 repo，会话会死仓库不忘</text>
+    <text x="744" y="236" fill="#4C8DFF" font-size="15" font-family="ui-monospace,Consolas,monospace">tasks/INDEX.md · summary.md</text>
+    <text x="744" y="264" fill="#9DA7B3" font-size="14">新会话 grep 一下就捞到那条（词面命中=快路径）</text>
+  </g>
+
+  <!-- ============ row 2 (amber) ============ -->
+  <g>
+    <rect x="64" y="310" width="520" height="128" rx="12" fill="#131A28" stroke="#E3A008" stroke-width="1.6"/>
+    <text x="92" y="356" fill="#E3A008" font-size="30" font-weight="800">②</text>
+    <text x="140" y="352" fill="#E6EDF3" font-size="21" font-weight="700">长任务续不上</text>
+    <text x="140" y="384" fill="#9DA7B3" font-size="14.5">"上次卡在哪"没处放；写进独立指针文件</text>
+    <text x="140" y="408" fill="#9DA7B3" font-size="14.5">（.current-task 一类）两周就过期，烂成误导。</text>
+
+    <line x1="596" y1="374" x2="712" y2="374" stroke="#8B949E" stroke-width="1.8" marker-end="url(#a)"/>
+
+    <rect x="716" y="310" width="500" height="128" rx="12" fill="#131A28" stroke="#E3A008" stroke-width="1.6"/>
+    <text x="744" y="350" fill="#E6EDF3" font-size="18" font-weight="700">状态长在任务身上，随收尾更新</text>
+    <text x="744" y="380" fill="#E3A008" font-size="15" font-family="ui-monospace,Consolas,monospace">progress.md + INDEX 🚧</text>
+    <text x="744" y="408" fill="#9DA7B3" font-size="14">grep "^- 🚧" 看全部在途，doctor 查漂移</text>
+  </g>
+
+  <!-- ============ row 3 (green) ============ -->
+  <g>
+    <rect x="64" y="454" width="520" height="128" rx="12" fill="#131A28" stroke="#3FB950" stroke-width="1.6"/>
+    <text x="92" y="500" fill="#3FB950" font-size="30" font-weight="800">③</text>
+    <text x="140" y="496" fill="#E6EDF3" font-size="21" font-weight="700">同一个坑反复踩</text>
+    <text x="140" y="528" fill="#9DA7B3" font-size="14.5">你 / 同事 / 另一个 agent，</text>
+    <text x="140" y="552" fill="#9DA7B3" font-size="14.5">又从头踩一遍。</text>
+
+    <line x1="596" y1="518" x2="712" y2="518" stroke="#8B949E" stroke-width="1.8" marker-end="url(#a)"/>
+
+    <rect x="716" y="454" width="500" height="128" rx="12" fill="#131A28" stroke="#3FB950" stroke-width="1.6"/>
+    <text x="744" y="494" fill="#E6EDF3" font-size="18" font-weight="700">坑账 + SOP 一等公民</text>
+    <text x="744" y="524" fill="#3FB950" font-size="15" font-family="ui-monospace,Consolas,monospace">spec/pitfalls.md · sop/</text>
+    <text x="744" y="552" fill="#9DA7B3" font-size="14">动手前先 grep 历史，命中就复用不重探索</text>
+  </g>
+
+  <!-- footer -->
+  <line x1="64" y1="628" x2="1216" y2="628" stroke="#1C2430" stroke-width="1"/>
+  <text x="64" y="664" fill="#9DA7B3" font-size="15" font-weight="600">知识还会升级：收尾两问把任务经验推进成 SOP / 决策 / 规则 —— 不只是堆文件。</text>
+  <text x="64" y="694" fill="#6E7A8A" font-size="13">github.com/hjxccc/cairn · 几百行可 grep 的纯文本，就是整个记忆系统 —— 这就是重点</text>
+</svg>
