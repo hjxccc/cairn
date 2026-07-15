@@ -20,7 +20,7 @@ description: cairn — markdown-native work-trail, progress, SOP, decision, and 
 | Check prior art | `grep -i <keyword> <base>/tasks/INDEX.md` |
 | See what's in flight | `grep "^- 🚧\|^- ⏸" <base>/tasks/INDEX.md` |
 
-**Three typical scenarios, start to finish** (full multi-file example in `examples/sample-trail/`):
+**Three typical scenarios, start to finish** (full multi-file example in `examples/sample-trail/`; a desensitized Chinese version in `examples/sample-trail-zh/`):
 
 **A — Check history before starting (the common case)**
 > User: "Dig into why payment timeouts spike every ~45 min."
