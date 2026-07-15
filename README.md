@@ -12,6 +12,23 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 ![cairn demo — start a task, wrap up, grep the trail](assets/demo.gif)
 
+## What it fixes
+
+![three pains, three repo-native answers](assets/why-cairn.svg)
+
+Working with an AI agent, these three things bite every day:
+
+**① New chat, and the AI has amnesia.** Project context, team conventions, what you actually concluded last time — it's all in the previous conversation, and a fresh session can't see any of it, so you brief it from scratch again.
+→ cairn writes these **into the repo** (`INDEX.md`, task summaries, pitfalls, SOPs are all files): sessions close, files don't — a new session just `grep`s the line back.
+
+**② Halfway through, a new session and "where was I?"** A long task spans days and several conversations, and progress has nowhere solid to live (put it in a pointer file and it's stale in two weeks).
+→ cairn keeps progress **on the task's own `progress.md`** with a 🚧 in INDEX: one `grep "^- 🚧"` shows everything unfinished, so you pick up from last time's "next", and `doctor.sh` (read-only) catches drift.
+
+**③ Last month's landmine, stepped on again.** You hit it, a teammate hit it, another AI session is still hitting it — because nobody wrote it where it can be found.
+→ cairn makes **pitfalls one-liners and SOPs runnable**: grep the history before acting, reuse the hit instead of re-clearing the same mine.
+
+> One thing in common: **an AI's memory shouldn't live in the chat — it should live in the repo.** Chats are volatile; the repo rides along with git. cairn doesn't stuff history into every session (slow and bloated); it leaves the trail in the repo and `grep`s it on demand — why grep and not a vector store is [decision 004](docs/decisions/004-grep-over-vector-search.md).
+
 ## Quick start
 
 > Prerequisites: `git` + `bash` (Git Bash on Windows). `python3` only for the optional root-guard hook. Full walkthrough with real outputs: **[docs/tutorial.md](docs/tutorial.md)**.
@@ -57,12 +74,12 @@ Six kinds of project knowledge, one shared pattern (*one-line index + detail fil
 ├── docs/decisions/           # lightweight ADRs with supersede links
 └── scripts/
     ├── mktmp.sh              # create a task dir in one command
-    └── doctor.sh            # flag stale 🚧 markers & dangling INDEX refs
+    └── doctor.sh            # flag stale markers, dangling refs, dup slugs, dead links
 ```
 
 Your whole "project memory" is greppable text. `grep 🚧 INDEX.md` is your progress dashboard. `grep -i payment INDEX.md` is your "have we solved this before?".
 
-The one failure mode a folder-and-a-habit still has is a `🚧` marker that quietly goes stale (the same way lifecycle pointers rot). `./.cairn/scripts/doctor.sh` is a ~90-line zero-dependency bash check that flags exactly two things: in-flight markers whose task hasn't been touched in N days (default 14), and markers pointing at a task dir that no longer exists. It stays *out* of the session hook on purpose — you run it when you want, not every conversation. Across many repos: `for d in */.cairn; do (cd "$d/.." && ./.cairn/scripts/doctor.sh); done`.
+The one failure mode a folder-and-a-habit still has is a `🚧` marker that quietly goes stale (the same way lifecycle pointers rot). `./.cairn/scripts/doctor.sh` is a zero-dependency bash check that flags four kinds of drift: in-flight markers whose task hasn't been touched in N days (default 🚧 14 / ⏸ 60), markers pointing at a task dir that no longer exists, duplicate slugs, and dead links in the index files. It stays *out* of the session hook on purpose — you run it when you want, not every conversation. Across many repos: `for d in */.cairn; do (cd "$d/.." && ./.cairn/scripts/doctor.sh); done`.
 
 ![how the trail works](assets/architecture.svg)
 
@@ -131,7 +148,7 @@ Don't backfill. Half-finished migrations are worse than none. Index forward only
 ## Roadmap
 
 - [ ] PowerShell-native install for Windows (Git Bash works today)
-- [x] `doctor.sh` — spots stale 🚧 markers and dangling INDEX refs (zero-dep bash, opt-in, not in the session hook)
+- [x] `doctor.sh` — spots stale markers, dangling refs, duplicate slugs, dead links (zero-dep bash, opt-in, not in the session hook)
 - [ ] Claude Code plugin packaging
 - [ ] Example gallery from real projects
 
