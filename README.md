@@ -12,6 +12,26 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 ![cairn demo — start a task, wrap up, grep the trail](assets/demo.gif)
 
+## Quick start
+
+**One command to install** (idempotent, never overwrites):
+
+```bash
+git clone https://github.com/hjxccc/cairn
+cairn/install.sh /path/to/your-project
+```
+
+**Then it's one sentence to your agent.** With cairn wired in, Claude Code / Codex does the mechanics — creates the task dir, stacks the INDEX line, greps history, logs pitfalls — while you just talk:
+
+> "start a task: fix the login timeout" → "log progress" → "wrap up" → "have we dealt with this before?"
+
+Wire it up once:
+
+- **Claude Code**: copy `skill/` to `~/.claude/skills/cairn/` and merge `hooks/settings-hooks.json` into `.claude/settings.json` (append-only).
+- **Any agent** (Cursor / Codex / Windsurf...): paste `templates/agent-snippet.md` into your `AGENTS.md`. The conventions are just markdown — no hooks required.
+
+> Prerequisites: `git` + `bash` (Git Bash on Windows); `python3` only for the optional root-guard hook. Full walkthrough with real outputs: [docs/tutorial.md](docs/tutorial.md).
+
 ## What it fixes
 
 ![three pains, three repo-native answers](assets/why-cairn.svg)
@@ -28,23 +48,6 @@ Working with an AI agent, these three things bite every day:
 → cairn makes **pitfalls one-liners and SOPs runnable**: grep the history before acting, reuse the hit instead of re-clearing the same mine.
 
 > One thing in common: **an AI's memory shouldn't live in the chat — it should live in the repo.** Chats are volatile; the repo rides along with git. cairn doesn't stuff history into every session (slow and bloated); it leaves the trail in the repo and `grep`s it on demand — why grep and not a vector store is [decision 004](docs/decisions/004-grep-over-vector-search.md).
-
-## Quick start
-
-> Prerequisites: `git` + `bash` (Git Bash on Windows). `python3` only for the optional root-guard hook. Full walkthrough with real outputs: **[docs/tutorial.md](docs/tutorial.md)**.
-
-```bash
-git clone https://github.com/hjxccc/cairn
-cd your-project && /path/to/cairn/install.sh .    # scaffolds .cairn/, templates, hook
-ls .cairn/ && ./.cairn/scripts/mktmp.sh demo      # verify: dirs exist, task dir created
-```
-
-Then wire up your agent (one of):
-
-- **Claude Code**: copy `skill/` to `~/.claude/skills/cairn/` and merge `hooks/settings-hooks.json` into `.claude/settings.json` — the agent then handles "start a task", "log progress", "wrap up", "have we hit this before?", "write an SOP", "log a decision" automatically.
-- **Any agent** (Cursor / Codex / Windsurf...): paste `templates/agent-snippet.md` into your `AGENTS.md` / `CLAUDE.md` / rules file. The conventions are just markdown — no hooks required.
-
-Daily use is four phrases to your agent: *"start a task for X"*, *"log progress"*, *"wrap up"*, *"have we dealt with this before?"*
 
 ## What it manages
 

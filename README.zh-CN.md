@@ -12,6 +12,26 @@
 
 ![cairn demo —— 起任务、收尾、grep 足迹](assets/demo.gif)
 
+## 快速开始
+
+**一条命令装好**（幂等，不覆盖已有文件）：
+
+```bash
+git clone https://github.com/hjxccc/cairn
+cairn/install.sh /path/to/你的项目
+```
+
+**然后就交给 agent——一句话的事。** 接了 cairn 的 Claude Code / Codex，日常你只管说人话，它自动建任务目录、垒 INDEX、查历史、记坑：
+
+> 「起个任务：修登录超时」 → 「记一下进度」 → 「收尾」 → 「这个以前处理过没？」
+
+接一次即可：
+
+- **Claude Code**：把 `skill/` 拷到 `~/.claude/skills/cairn/`，再把 `hooks/settings-hooks.json` 合并进 `.claude/settings.json`（只追加）。
+- **任意 agent**（Cursor / Codex / Windsurf…）：把 `templates/agent-snippet.md` 贴进 `AGENTS.md` 即可——约定就是 markdown，不依赖 hook。
+
+> 前置：`git` + `bash`（Windows 用 Git Bash）；`python3` 只有可选的根目录拦截 hook 才需要。完整教程（含真实输出）见 [docs/tutorial.zh-CN.md](docs/tutorial.zh-CN.md)。
+
 ## 解决什么开发痛点
 
 ![三个痛点，三个仓库原生的答案](assets/why-cairn-zh.svg)
@@ -28,23 +48,6 @@
 → cairn 让**坑账一行一坑、SOP 能照跑**：动手前先 grep 一下历史，踩过的直接复用，不重新趟一遍雷。
 
 > 三件事一个共性：**AI 的记忆不该活在对话里，该活在仓库里。** 对话是易失的，仓库跟着 git 一直在。cairn 不往每次会话里塞历史（那样又慢又占地方），而是把痕迹留在 repo、要用时一条 `grep` 捞——为什么用 grep 不用向量库，见 [决策 004](docs/decisions/004-grep-over-vector-search.md)。
-
-## 快速开始
-
-> 前置：`git` + `bash`（Windows 用 Git Bash）；`python3` 只有可选 hook 需要。含真实输出的完整教程：**[docs/tutorial.zh-CN.md](docs/tutorial.zh-CN.md)**。
-
-```bash
-git clone https://github.com/hjxccc/cairn
-cd 你的项目 && /path/to/cairn/install.sh .    # 铺 .cairn/ 结构、模板和 hook
-ls .cairn/ && ./.cairn/scripts/mktmp.sh demo  # 验证：目录都在、能建任务
-```
-
-再接上你的 agent（二选一）：
-
-- **Claude Code**：把 `skill/` 拷到 `~/.claude/skills/cairn/`，并按 `hooks/settings-hooks.json` 注册根目录拦截 hook。之后"起个任务 / 记进度 / 收尾 / 以前处理过没 / 写个 SOP / 记个决策"agent 全自动接住。
-- **任意 agent**（Cursor / Codex / Windsurf…）：把 `templates/agent-snippet.md` 贴进你的 `AGENTS.md` / 规则文件即可——约定就是 markdown，不依赖 hook。
-
-日常就是对 agent 说四句话：**"起个任务 X"、"记进度"、"收尾"、"以前处理过没"**。
 
 ## 管什么
 
