@@ -38,8 +38,9 @@ copy_if_absent "$SRC/templates/INDEX.md"      "$B/tasks/INDEX.md"
 copy_if_absent "$SRC/templates/sop-index.md"  "$B/sop/index.md"
 copy_if_absent "$SRC/templates/pitfalls.md"   "$B/spec/pitfalls.md"
 copy_if_absent "$SRC/scripts/mktmp.sh"        "$B/scripts/mktmp.sh"
+copy_if_absent "$SRC/scripts/doctor.sh"       "$B/scripts/doctor.sh"
 copy_if_absent "$SRC/hooks/block-root-scratch.py" "$TARGET/.claude/hooks/block-root-scratch.py"
-chmod +x "$B/scripts/mktmp.sh" 2>/dev/null || true
+chmod +x "$B/scripts/mktmp.sh" "$B/scripts/doctor.sh" 2>/dev/null || true
 
 # 3. gitignore (idempotent append)
 GI="$TARGET/.gitignore"
