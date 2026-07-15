@@ -1,43 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="660" viewBox="0 0 1040 660" font-family="ui-monospace,'Cascadia Code',Consolas,'PingFang SC','Microsoft YaHei','Noto Sans SC',monospace">
-  <rect width="1040" height="660" rx="14" fill="#0B0E14"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="600" viewBox="0 0 1040 600" font-family="-apple-system,'PingFang SC','Microsoft YaHei','Noto Sans SC','Segoe UI',Roboto,sans-serif">
+  <rect width="1040" height="600" rx="14" fill="#0B0E14"/>
 
-  <!-- terminal chrome -->
-  <rect x="24" y="24" width="992" height="612" rx="10" fill="#0F1420" stroke="#1C2430" stroke-width="1"/>
+  <!-- window chrome -->
+  <rect x="24" y="24" width="992" height="552" rx="10" fill="#0F1420" stroke="#1C2430" stroke-width="1"/>
   <circle cx="52" cy="52" r="6" fill="#FF5F56"/>
   <circle cx="72" cy="52" r="6" fill="#FFBD2E"/>
   <circle cx="92" cy="52" r="6" fill="#27C93F"/>
-  <text x="120" y="57" fill="#6E7A8A" font-size="13">your-project — cairn 一次完整循环</text>
+  <text x="120" y="57" fill="#9DA7B3" font-size="14" font-weight="600">你只管干活，痕迹自动留下、以后一搜就回</text>
   <line x1="24" y1="72" x2="1016" y2="72" stroke="#1C2430" stroke-width="1"/>
 
   <!-- ① start -->
-  <text x="48" y="112" fill="#4C8DFF" font-size="15" font-weight="700">①</text>
-  <text x="76" y="112" fill="#6E7A8A" font-size="13.5"># 起个任务：一条命令，建好日期目录并进入它的 scratch/</text>
-  <text x="76" y="138" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> cd "$(.cairn/scripts/mktmp.sh login-timeout)"</text>
-  <text x="76" y="162" fill="#9DA7B3" font-size="13.5">→ .cairn/tasks/07-15-login-timeout/scratch/</text>
+  <circle cx="60" cy="108" r="13" fill="#4C8DFF"/>
+  <text x="60" y="113" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">1</text>
+  <text x="88" y="106" fill="#E6EDF3" font-size="16" font-weight="700">起个任务</text>
+  <text x="88" y="132" fill="#9DA7B3" font-size="14">自动建好日期目录 <tspan fill="#7FB0FF" font-family="ui-monospace,Consolas,monospace">07-15-login-timeout/</tspan> 和它的 scratch/ —— 临时文件不用纠结放哪</text>
 
   <!-- ② work -->
-  <text x="48" y="212" fill="#E3A008" font-size="15" font-weight="700">②</text>
-  <text x="76" y="212" fill="#6E7A8A" font-size="13.5"># 排查两小时：调试脚本 / 截图 / dump 全丢进 scratch，根目录保持干净</text>
-  <text x="76" y="238" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> ls</text>
-  <text x="76" y="262" fill="#9DA7B3" font-size="13.5">probe.py   gateway-429s.png   pending_dump.csv</text>
-  <text x="560" y="262" fill="#E3A008" font-size="13">← 脏活集中一处，不散落全仓（hook 拦根目录）</text>
+  <circle cx="60" cy="192" r="13" fill="#E3A008"/>
+  <text x="60" y="197" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">2</text>
+  <text x="88" y="190" fill="#E6EDF3" font-size="16" font-weight="700">排查两小时，脏活自动归位</text>
+  <text x="88" y="216" fill="#9DA7B3" font-size="14" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">scratch/  ·  probe.py   gateway-429s.png   pending_dump.csv</text>
+  <text x="88" y="240" fill="#E3A008" font-size="13.5">调试脚本 / 截图 / dump 都进 scratch，根目录始终干净（hook 拦着，不散落全仓）</text>
 
   <!-- ③ wrap up -->
-  <text x="48" y="312" fill="#3FB950" font-size="15" font-weight="700">③</text>
-  <text x="76" y="312" fill="#6E7A8A" font-size="13.5"># 收尾：一句话结论垒进 INDEX（scratch 随任务留在原地，不进 git）</text>
-  <text x="76" y="338" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> head -1 .cairn/tasks/INDEX.md</text>
-  <text x="76" y="362" fill="#E3A008" font-size="13.5">- 07-15-login-timeout — 自家 replay cron 无退避=重试风暴；加 cap+jitter [超时][重试]</text>
+  <circle cx="60" cy="300" r="13" fill="#3FB950"/>
+  <text x="60" y="305" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">3</text>
+  <text x="88" y="298" fill="#E6EDF3" font-size="16" font-weight="700">收尾：一句话结论落进 INDEX</text>
+  <text x="88" y="324" fill="#9DA7B3" font-size="13">（scratch 随任务留在原地，不进 git）</text>
+  <rect x="88" y="338" width="884" height="34" rx="6" fill="#131A28" stroke="#E3A008" stroke-width="1.2"/>
+  <text x="104" y="360" fill="#E3A008" font-size="13.5" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">- 07-15-login-timeout — 自家 replay cron 无退避=重试风暴；加 cap+jitter</text>
 
   <!-- ④ recall -->
-  <text x="48" y="412" fill="#A371F7" font-size="15" font-weight="700">④</text>
-  <text x="76" y="412" fill="#6E7A8A" font-size="13.5"># 三周后 · 新会话 / 另一个人 / 另一个 agent —— 一条 grep 就捞回</text>
-  <text x="76" y="438" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> grep -i 超时 .cairn/tasks/INDEX.md</text>
-  <text x="76" y="462" fill="#E3A008" font-size="13.5">- 07-15-login-timeout — …重试风暴…加 cap+jitter</text>
-  <text x="640" y="462" fill="#3FB950" font-size="13">← 秒查到，直接复用，不重踩</text>
+  <circle cx="60" cy="416" r="13" fill="#A371F7"/>
+  <text x="60" y="421" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">4</text>
+  <text x="88" y="414" fill="#E6EDF3" font-size="16" font-weight="700">三周后 · 新会话 / 另一个人 / 另一个 agent</text>
+  <text x="88" y="440" fill="#9DA7B3" font-size="14">一搜「超时」就捞回那条 <tspan fill="#3FB950" font-weight="700">→ 秒查到，直接复用，不重踩</tspan></text>
 
   <!-- payoff strip -->
-  <line x1="48" y1="512" x2="992" y2="512" stroke="#1C2430" stroke-width="1"/>
-  <text x="48" y="548" fill="#E6EDF3" font-size="15" font-weight="700">起任务一条命令 · 脏活进 scratch 不散落 · 收尾垒一行 · 以后一条 grep 捞回</text>
-  <text x="48" y="578" fill="#9DA7B3" font-size="13.5">整个"项目记忆"就是可 grep 的纯文本 —— 没有运行时、没有数据库、没有会过期的状态机。</text>
-  <text x="48" y="608" fill="#6E7A8A" font-size="12.5">github.com/hjxccc/cairn</text>
+  <line x1="48" y1="486" x2="992" y2="486" stroke="#1C2430" stroke-width="1"/>
+  <text x="48" y="522" fill="#E6EDF3" font-size="15" font-weight="700">起任务不用想放哪 · 脏活自动归位 · 收尾垒一行 · 以后一搜就回</text>
+  <text x="48" y="550" fill="#9DA7B3" font-size="13.5">整个"项目记忆"就是可搜索的纯文本 —— 没有运行时、没有数据库、没有会过期的状态机。</text>
 </svg>

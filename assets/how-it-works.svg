@@ -1,43 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="660" viewBox="0 0 1040 660" font-family="ui-monospace,'Cascadia Code',Consolas,'SF Mono',Menlo,monospace">
-  <rect width="1040" height="660" rx="14" fill="#0B0E14"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="600" viewBox="0 0 1040 600" font-family="-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <rect width="1040" height="600" rx="14" fill="#0B0E14"/>
 
-  <!-- terminal chrome -->
-  <rect x="24" y="24" width="992" height="612" rx="10" fill="#0F1420" stroke="#1C2430" stroke-width="1"/>
+  <!-- window chrome -->
+  <rect x="24" y="24" width="992" height="552" rx="10" fill="#0F1420" stroke="#1C2430" stroke-width="1"/>
   <circle cx="52" cy="52" r="6" fill="#FF5F56"/>
   <circle cx="72" cy="52" r="6" fill="#FFBD2E"/>
   <circle cx="92" cy="52" r="6" fill="#27C93F"/>
-  <text x="120" y="57" fill="#6E7A8A" font-size="13">your-project — one full cairn loop</text>
+  <text x="120" y="57" fill="#9DA7B3" font-size="14" font-weight="600">you just do the work — the trail is left automatically, one search brings it back</text>
   <line x1="24" y1="72" x2="1016" y2="72" stroke="#1C2430" stroke-width="1"/>
 
   <!-- 1 start -->
-  <text x="48" y="112" fill="#4C8DFF" font-size="15" font-weight="700">1</text>
-  <text x="72" y="112" fill="#6E7A8A" font-size="13.5"># start a task: one command builds the dated dir and drops you in its scratch/</text>
-  <text x="72" y="138" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> cd "$(.cairn/scripts/mktmp.sh login-timeout)"</text>
-  <text x="72" y="162" fill="#9DA7B3" font-size="13.5">→ .cairn/tasks/07-15-login-timeout/scratch/</text>
+  <circle cx="60" cy="108" r="13" fill="#4C8DFF"/>
+  <text x="60" y="113" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">1</text>
+  <text x="88" y="106" fill="#E6EDF3" font-size="16" font-weight="700">Start a task</text>
+  <text x="88" y="132" fill="#9DA7B3" font-size="14">a dated dir <tspan fill="#7FB0FF" font-family="ui-monospace,Consolas,monospace">07-15-login-timeout/</tspan> and its scratch/ are created for you — no deciding where temp files go</text>
 
   <!-- 2 work -->
-  <text x="48" y="212" fill="#E3A008" font-size="15" font-weight="700">2</text>
-  <text x="72" y="212" fill="#6E7A8A" font-size="13.5"># two hours of debugging: scripts / screenshots / dumps all land in scratch, root stays clean</text>
-  <text x="72" y="238" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> ls</text>
-  <text x="72" y="262" fill="#9DA7B3" font-size="13.5">probe.py   gateway-429s.png   pending_dump.csv</text>
-  <text x="560" y="262" fill="#E3A008" font-size="13">← one place, never scattered (hook guards the root)</text>
+  <circle cx="60" cy="192" r="13" fill="#E3A008"/>
+  <text x="60" y="197" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">2</text>
+  <text x="88" y="190" fill="#E6EDF3" font-size="16" font-weight="700">Two hours of debugging — the mess files itself</text>
+  <text x="88" y="216" fill="#9DA7B3" font-size="14" font-family="ui-monospace,Consolas,monospace">scratch/  ·  probe.py   gateway-429s.png   pending_dump.csv</text>
+  <text x="88" y="240" fill="#E3A008" font-size="13.5">scripts / screenshots / dumps all land in scratch — repo root stays clean (the hook guards it)</text>
 
   <!-- 3 wrap up -->
-  <text x="48" y="312" fill="#3FB950" font-size="15" font-weight="700">3</text>
-  <text x="72" y="312" fill="#6E7A8A" font-size="13.5"># wrap up: a one-line conclusion onto INDEX (scratch stays with the task, out of git)</text>
-  <text x="72" y="338" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> head -1 .cairn/tasks/INDEX.md</text>
-  <text x="72" y="362" fill="#E3A008" font-size="13">- 07-15-login-timeout — our replay cron had no backoff = retry storm; added cap+jitter [timeout]</text>
+  <circle cx="60" cy="300" r="13" fill="#3FB950"/>
+  <text x="60" y="305" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">3</text>
+  <text x="88" y="298" fill="#E6EDF3" font-size="16" font-weight="700">Wrap up: a one-line conclusion onto INDEX</text>
+  <text x="88" y="324" fill="#9DA7B3" font-size="13">(scratch stays with the task, out of git)</text>
+  <rect x="88" y="338" width="884" height="34" rx="6" fill="#131A28" stroke="#E3A008" stroke-width="1.2"/>
+  <text x="104" y="360" fill="#E3A008" font-size="13.5" font-family="ui-monospace,Consolas,monospace">- 07-15-login-timeout — our replay cron had no backoff = retry storm; added cap+jitter</text>
 
   <!-- 4 recall -->
-  <text x="48" y="412" fill="#A371F7" font-size="15" font-weight="700">4</text>
-  <text x="72" y="412" fill="#6E7A8A" font-size="13.5"># 3 weeks later · new session / a teammate / another agent — one grep brings it back</text>
-  <text x="72" y="438" fill="#E6EDF3" font-size="14"><tspan fill="#27C93F">$</tspan> grep -i timeout .cairn/tasks/INDEX.md</text>
-  <text x="72" y="462" fill="#E3A008" font-size="13">- 07-15-login-timeout — …retry storm…cap+jitter</text>
-  <text x="620" y="462" fill="#3FB950" font-size="13">← found in seconds, reuse it, don't re-step</text>
+  <circle cx="60" cy="416" r="13" fill="#A371F7"/>
+  <text x="60" y="421" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">4</text>
+  <text x="88" y="414" fill="#E6EDF3" font-size="16" font-weight="700">3 weeks later · new session / a teammate / another agent</text>
+  <text x="88" y="440" fill="#9DA7B3" font-size="14">search "timeout" and the line comes back <tspan fill="#3FB950" font-weight="700">→ found in seconds, reuse it, don't re-step</tspan></text>
 
   <!-- payoff strip -->
-  <line x1="48" y1="512" x2="992" y2="512" stroke="#1C2430" stroke-width="1"/>
-  <text x="48" y="548" fill="#E6EDF3" font-size="14.5" font-weight="700">one command to start · mess stays in scratch · wrap to one line · one grep brings it back later</text>
-  <text x="48" y="578" fill="#9DA7B3" font-size="13">The whole "project memory" is greppable plain text — no runtime, no database, no state machine that expires.</text>
-  <text x="48" y="608" fill="#6E7A8A" font-size="12.5">github.com/hjxccc/cairn</text>
+  <line x1="48" y1="486" x2="992" y2="486" stroke="#1C2430" stroke-width="1"/>
+  <text x="48" y="522" fill="#E6EDF3" font-size="15" font-weight="700">nothing to decide where things go · the mess auto-files · wrap to one line · one search brings it back</text>
+  <text x="48" y="550" fill="#9DA7B3" font-size="13.5">the whole "project memory" is searchable plain text — no runtime, no database, no state machine that expires.</text>
 </svg>
