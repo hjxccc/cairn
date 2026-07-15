@@ -10,7 +10,7 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 [中文文档 →](README.zh-CN.md)
 
-![cairn demo — start a task, wrap up, grep the trail](assets/demo.gif)
+![cairn — one full loop: start a task → scratch → wrap to one line → grep it back](assets/how-it-works.svg)
 
 ## Quick start
 
@@ -97,6 +97,8 @@ The one failure mode a folder-and-a-habit still has is a `🚧` marker that quie
 
 We ran a full-featured AI workflow framework on a production multi-repo project for **5 months and 148 tasks**. Then we audited what was actually used:
 
+![the autopsy — actual adoption of each component across the same tasks](assets/autopsy-survival.svg)
+
 | Component | Verdict after 5 months |
 |---|---|
 | Dated task folders (`MM-DD-topic/`) | ✅ 148 tasks, used daily |
@@ -126,6 +128,23 @@ cairn is the surviving 20%, distilled, plus the three pieces the autopsy showed 
 The six-type structure maps 1:1 onto the standard cognitive taxonomy for LLM agents ([CoALA](https://arxiv.org/abs/2309.02427)): task trail = episodic memory, pitfalls/specs = semantic, SOPs = procedural, and the INDEX line is the reflection/compression layer from Generative Agents. The upgrade chain — *task → SOP → skill, pitfall → rule* — is memory consolidation, the "curator" pattern that shows ~+10% on agent benchmarks.
 
 On the engineering side it's the repo-native minimal version of practices large orgs already trust: SRE runbooks (our SOP template: trigger / pre-checks / numbered steps with expected output / verify / rollback), blameless postmortems, ADRs with supersede chains, and the Diátaxis split. Details in [docs/grounding.md](docs/grounding.md).
+
+## cairn vs the usual approaches
+
+Not better on every axis — a different cost model. The honest breakdown:
+
+| | Manual rules file (`.cursorrules` / `CLAUDE.md`) | Auto-injection framework | **cairn** |
+|---|---|---|---|
+| Cross-session memory | none — you re-brief every time | pre-injected (present, but fills context) | trail in the repo, fetched only when you retrieve |
+| Session-start cost | light | a spec injected every session (one project measured ~22KB) | ~1.5KB of rules + a tiny pointer |
+| Progress / state | nowhere to put it | framework tracks lifecycle state (can go stale) | on the task's `progress.md` + a 🚧 in INDEX |
+| Finding past work | scroll the chat | pre-injected, the line you want is buried | `grep` hits (fast path) → miss? read the small index |
+| Setup | paste a file | install a framework + config + adapters | one command, or one sentence to your agent |
+| Team sharing | one file, everyone's differs | shared inside the framework | layered: personal trail gitignored, team assets committed |
+| Platform coupling | tied to one tool | needs a framework protocol + per-platform adapters | core is markdown, platform-independent |
+| **cairn's cost (honest)** | — | — | **you have to grep; lexical search can miss (mitigated by keyword tags + reading the small index); conventions need a human to follow (stack one line at wrap-up)** |
+
+Auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
 
 ## How is this different from…
 

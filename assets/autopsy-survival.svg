@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="560" viewBox="0 0 1080 560" font-family="-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+  <rect width="1080" height="560" rx="14" fill="#0B0E14"/>
+
+  <!-- title -->
+  <text x="48" y="60" fill="#E6EDF3" font-size="24" font-weight="700">The autopsy · in the same batch of tasks, what actually got used</text>
+  <text x="48" y="88" fill="#9DA7B3" font-size="14.5">One heavyweight AI-workflow framework, real adoption after 5 months / 148 tasks (longer = used more)</text>
+
+  <!-- axis captions -->
+  <text x="48" y="132" fill="#6E7A8A" font-size="12" letter-spacing="1">COMPONENT (convention / machine)</text>
+  <text x="470" y="132" fill="#6E7A8A" font-size="12" letter-spacing="1">HOW MUCH IT WAS ACTUALLY USED</text>
+
+  <!-- bar 1 -->
+  <text x="48" y="176" fill="#E6EDF3" font-size="15" font-weight="600">Dated task dirs</text>
+  <text x="210" y="176" fill="#3FB950" font-size="12.5">convention</text>
+  <rect x="470" y="160" width="540" height="26" rx="5" fill="#3FB950"/>
+  <text x="488" y="178" fill="#0B0E14" font-size="14" font-weight="700">148 / 148 · 100%　used daily</text>
+
+  <!-- bar 2 -->
+  <text x="48" y="236" fill="#E6EDF3" font-size="15" font-weight="600">Lifecycle state files</text>
+  <text x="240" y="236" fill="#F0716B" font-size="12.5">machine</text>
+  <rect x="470" y="220" width="36" height="26" rx="5" fill="#F0716B"/>
+  <text x="518" y="238" fill="#9DA7B3" font-size="13.5">10 / 148 · 7%　(task.json/.current-task — pointers stale for weeks)</text>
+
+  <!-- bar 3 -->
+  <text x="48" y="296" fill="#E6EDF3" font-size="15" font-weight="600">Per-task JSONL injection</text>
+  <text x="278" y="296" fill="#F0716B" font-size="12.5">machine</text>
+  <rect x="470" y="280" width="8" height="26" rx="3" fill="#F0716B"/>
+  <text x="490" y="298" fill="#9DA7B3" font-size="13.5">2 / 148 · 1%　(only 2 of 148 tasks ever used it)</text>
+
+  <!-- other machines -->
+  <line x1="48" y1="342" x2="1032" y2="342" stroke="#1C2430" stroke-width="1"/>
+  <text x="48" y="374" fill="#9DA7B3" font-size="14" font-weight="600">Other machines idled too:</text>
+  <text x="48" y="400" fill="#9DA7B3" font-size="13.5">· agent pipeline (plan→implement→check→debug) — abandoned after month 1</text>
+  <text x="48" y="424" fill="#9DA7B3" font-size="13.5">· session journal: 7 lines in 5 months　· the 22KB workflow doc injected every session described a flow nobody followed</text>
+
+  <!-- takeaway -->
+  <rect x="48" y="446" width="984" height="66" rx="10" fill="#0F1420" stroke="#2A3342"/>
+  <text x="68" y="478" fill="#E6EDF3" font-size="15" font-weight="700">The pattern: anything that needs discipline to feed rots; what survived is "a folder + a habit".</text>
+  <text x="68" y="500" fill="#9DA7B3" font-size="13.5">cairn = the surviving 20%, distilled — only conventions that live without feeding: markdown + git + one grep.</text>
+
+  <text x="48" y="540" fill="#6E7A8A" font-size="12">github.com/hjxccc/cairn · data from a real framework-usage audit, not synthetic</text>
+</svg>
