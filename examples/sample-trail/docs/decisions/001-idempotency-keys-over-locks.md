@@ -1,7 +1,7 @@
 # 001 — Idempotency keys over distributed locks for refund processing
 
 - Status: current
-- Date: (03-15)
+- Date: 03-15
 - Source: `tasks/03-15-refund-double-credit/`
 
 ## Context

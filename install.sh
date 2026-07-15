@@ -65,7 +65,10 @@ cat <<EOF
      and merge hooks/settings-hooks.json into $TARGET/.claude/settings.json
      to enable the repo-root scratch guard.
 
-  3) Try it:
+  3) See a filled-in trail (what all six content types look like in use):
+       $SRC/examples/sample-trail/
+
+  4) Try it:
        cd "\$($BASE/scripts/mktmp.sh demo-topic)"        # creates a task dir
        # then tell your agent: "wrap up" when done — it stacks a line in INDEX.md
 
