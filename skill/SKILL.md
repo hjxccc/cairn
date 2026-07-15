@@ -10,6 +10,36 @@ description: cairn — markdown-native work-trail, progress, SOP, decision, and 
 
 **Base dir**: check for `.cairn/` first, then `.trellis/`; all paths below use `<base>`.
 
+## Quickstart (use it first, understand it later)
+
+**Cheat sheet — the three everyday commands:**
+
+| Want to | Run |
+|---|---|
+| Start a task | `cd "$(./<base>/scripts/mktmp.sh <topic>)"` |
+| Check prior art | `grep -i <keyword> <base>/tasks/INDEX.md` |
+| See what's in flight | `grep "^- 🚧\|^- ⏸" <base>/tasks/INDEX.md` |
+
+**Three typical scenarios, start to finish** (full multi-file example in `examples/sample-trail/`):
+
+**A — Check history before starting (the common case)**
+> User: "Dig into why payment timeouts spike every ~45 min."
+- Feels familiar, grep first: `grep -i timeout <base>/tasks/INDEX.md`
+- Hit → Read that task's summary and reuse the fix instead of re-investigating.
+- No hit → start a task: `cd "$(./<base>/scripts/mktmp.sh payment-timeout-storm)"`; all debug dumps go in that `scratch/` (writing them at repo root gets blocked by the hook).
+
+**B — Wrap up (≤2 min total)**
+> User: "That's it, wrap it up."
+- Stack one line on **top** of INDEX.md — a conclusion, not a log:
+  `- 03-18-payment-timeout-storm — our own idempotent replay had no jitter/cap → retry storm; capped + jittered [payment][retry-storm]`
+- Two-question check: ① Do this again? yes → distill `sop/investigate-payment-timeouts.md`. ② Six-months-why? no architecture choice → no decision entry.
+- Got bitten? one line in `spec/pitfalls.md`: `- 2026-03-18 fixed-schedule retry jobs synchronize into storms → always add jitter + cap [retry][cron]`
+
+**C — Resume across sessions**
+> User (new session): "Where did the timeout thing land?"
+- `grep "^- 🚧\|^- ⏸" <base>/tasks/INDEX.md` → hit `🚧 03-22-checkout-ab-migration`
+- Read that task's `progress.md` "Next/Blocked" and continue — no scrollback needed.
+
 ## 0. Six principles (why this shape)
 
 Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framework: every component that needed discipline to feed (JSONL injection, agent pipelines, lifecycle state files, session journals) rotted; the dated-folder conventions survived.
