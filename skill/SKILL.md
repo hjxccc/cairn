@@ -52,6 +52,7 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 - All in-flight work: `grep "^- 🚧\|^- ⏸" <base>/tasks/INDEX.md` (anchored, so header text doesn't match) — that's the dashboard, zero upkeep.
 - Resume a task: read its `progress.md` "Next"/"Blocked".
 - Stale 🚧 markers surface in one grep; fix on sight. Never create a separate current-task pointer file.
+- Actively self-check with `./.cairn/scripts/doctor.sh` (zero-dep bash): flags in-flight markers untouched past a threshold (🚧 14d / ⏸ 60d), markers pointing at a missing task dir, duplicate slugs, and dead relative links in index files. Deliberately kept *out* of the session hook so it costs nothing per conversation; `--orphans` also reports untracked task dirs. Across repos: `for d in */.cairn; do (cd "$d/.." && ./.cairn/scripts/doctor.sh); done`.
 
 ## 4. SOPs and decisions (the upgrade chain)
 
