@@ -10,7 +10,7 @@
 
 [English →](README.md)
 
-![cairn demo —— 起任务、收尾、grep 足迹](assets/demo.gif)
+![cairn 一次完整循环：起任务 → scratch → 收尾垒一行 → 以后 grep 捞回](assets/how-it-works-zh.svg)
 
 ## 快速开始
 
@@ -89,13 +89,15 @@ cairn/install.sh /path/to/你的项目          # 幂等，不覆盖已有文件
 
 「一个文件夹 + 一个习惯」唯一还会烂的地方，是某个 `🚧` 标记悄悄过期（跟生命周期指针烂掉一个道理）。`./.cairn/scripts/doctor.sh` 是个零依赖 bash，揪四类漂移：挂着标记但任务超过 N 天（默认 🚧 14 / ⏸ 60）没动、标记指向的任务目录已不存在、重复 slug、以及索引里的死链接。它**故意不进 SessionStart hook**——你想查才跑，不是每次开会话都跑。跨仓一把梭：`for d in */.cairn; do (cd "$d/.." && ./.cairn/scripts/doctor.sh); done`。
 
-![cairn 工作原理](assets/architecture.svg)
+![cairn 工作原理](assets/architecture-zh.svg)
 
 **典型样例**：[examples/sample-trail](examples/sample-trail)——一个虚构（完全脱敏）的支付团队两周足迹：7 个任务、一次重试风暴复盘、一篇"险情后补了前置检查"的 runbook、一次坑账就地修订、一条"为什么用幂等键不用 Redis 锁"的决策（含被否选项）。全部加起来约 150 行 markdown。
 
 ## 一切始于一次"尸检"
 
 我们在一个多仓库生产项目上，完整用了 **5 个月、148 个任务**的重型 AI 工作流框架，然后审计了实际使用情况：
+
+![尸检：同一批任务里各组件的实际使用率](assets/autopsy-survival-zh.svg)
 
 | 组件 | 5 个月后的判决 |
 |---|---|

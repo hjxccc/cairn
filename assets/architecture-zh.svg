@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" font-family="-apple-system,'PingFang SC','Microsoft YaHei','Noto Sans SC','Segoe UI',Roboto,sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8B949E"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="800" rx="14" fill="#0B0E14"/>
+
+  <!-- title -->
+  <text x="48" y="52" fill="#E6EDF3" font-size="24" font-weight="700">cairn · 足迹怎么运转</text>
+  <text x="48" y="76" fill="#9DA7B3" font-size="14">六类内容 · 一个模式：一行索引 + 详情文件 · 只有 markdown + git，别无他物</text>
+
+  <!-- ==================== personal layer ==================== -->
+  <rect x="44" y="100" width="560" height="440" rx="12" fill="#0F1420" stroke="#3D4657" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <text x="68" y="130" fill="#9DA7B3" font-size="13" font-weight="700" letter-spacing="1">个人层 · 默认不进 git · 单文件共享用 git add -f</text>
+
+  <!-- task box -->
+  <rect x="68" y="146" width="512" height="168" rx="10" fill="#131A28" stroke="#4C8DFF" stroke-width="1.6"/>
+  <text x="88" y="176" fill="#4C8DFF" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">tasks/03-18-payment-timeout-storm/</text>
+  <text x="88" y="203" fill="#E6EDF3" font-size="14" font-family="ui-monospace,Consolas,monospace">scratch/</text>
+  <text x="200" y="203" fill="#9DA7B3" font-size="13">调试垃圾 — 随任务消亡，永不进 git</text>
+  <text x="88" y="230" fill="#E6EDF3" font-size="14" font-family="ui-monospace,Consolas,monospace">progress.md</text>
+  <text x="200" y="230" fill="#9DA7B3" font-size="13">目标 · 已完成 · 下一步 · 卡点（仅跨会话长任务）</text>
+  <text x="88" y="257" fill="#E6EDF3" font-size="14" font-family="ui-monospace,Consolas,monospace">summary.md</text>
+  <text x="200" y="257" fill="#9DA7B3" font-size="13">一页结论，收尾时写</text>
+  <text x="88" y="292" fill="#6E7A8A" font-size="12.5">一条命令建好：./.cairn/scripts/mktmp.sh &lt;topic&gt;</text>
+
+  <!-- arrow task -> index -->
+  <line x1="324" y1="314" x2="324" y2="366" stroke="#8B949E" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="338" y="345" fill="#E3A008" font-size="13" font-weight="600">收尾 → 顶部垒一行</text>
+
+  <!-- index box -->
+  <rect x="68" y="370" width="512" height="88" rx="10" fill="#131A28" stroke="#E3A008" stroke-width="1.6"/>
+  <text x="88" y="397" fill="#E3A008" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">tasks/INDEX.md</text>
+  <text x="88" y="421" fill="#E6EDF3" font-size="12.5" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">- 🚧 03-22-checkout-v2 — 灰度到 25%，错误预算健康</text>
+  <text x="88" y="442" fill="#E6EDF3" font-size="12.5" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">- 03-18-payment-timeout — 自家重试风暴；加 cap+jitter</text>
+
+  <!-- pitfalls box -->
+  <rect x="68" y="474" width="512" height="52" rx="10" fill="#131A28" stroke="#F0716B" stroke-width="1.6"/>
+  <text x="88" y="500" fill="#F0716B" font-size="14" font-weight="700" font-family="ui-monospace,Consolas,monospace">spec/pitfalls.md</text>
+  <text x="258" y="500" fill="#9DA7B3" font-size="13">踩到记一行 · 就地改，别新旧并存</text>
+
+  <!-- ==================== team layer ==================== -->
+  <rect x="676" y="100" width="560" height="440" rx="12" fill="#0F1420" stroke="#3D4657" stroke-width="1.6"/>
+  <text x="700" y="130" fill="#9DA7B3" font-size="13" font-weight="700" letter-spacing="1">团队层 · 进 git · 随 git clone 走</text>
+
+  <!-- sop box -->
+  <rect x="700" y="146" width="512" height="108" rx="10" fill="#131A28" stroke="#3FB950" stroke-width="1.6"/>
+  <text x="720" y="176" fill="#3FB950" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">sop/</text>
+  <text x="790" y="176" fill="#E6EDF3" font-size="14" font-weight="600">怎么做 X — agent 照着跑</text>
+  <text x="720" y="203" fill="#9DA7B3" font-size="13">何时用 · 前置检查 · 步骤+预期输出 · 验证 · 回滚</text>
+  <text x="720" y="230" fill="#6E7A8A" font-size="12.5">做事前先查 sop/目录.md — 照跑，别重新探索</text>
+
+  <!-- decisions box -->
+  <rect x="700" y="270" width="512" height="108" rx="10" fill="#131A28" stroke="#A371F7" stroke-width="1.6"/>
+  <text x="720" y="300" fill="#A371F7" font-size="15" font-weight="700" font-family="ui-monospace,Consolas,monospace">docs/decisions/NNN-*.md</text>
+  <text x="720" y="327" fill="#E6EDF3" font-size="14" font-weight="600">系统为什么长这样</text>
+  <text x="720" y="354" fill="#9DA7B3" font-size="13">候选含被否项 · superseded 链 · 一页以内</text>
+
+  <!-- rules box -->
+  <rect x="700" y="394" width="512" height="60" rx="10" fill="#131A28" stroke="#8B949E" stroke-width="1.6"/>
+  <text x="720" y="420" fill="#E6EDF3" font-size="14" font-weight="700" font-family="ui-monospace,Consolas,monospace">AGENTS.md / CLAUDE.md</text>
+  <text x="720" y="442" fill="#9DA7B3" font-size="13">只放每次必守的规则 — 200 行内，不是知识库</text>
+
+  <!-- docs box -->
+  <rect x="700" y="470" width="512" height="56" rx="10" fill="#131A28" stroke="#8B949E" stroke-width="1.2"/>
+  <text x="720" y="496" fill="#E6EDF3" font-size="14" font-weight="700" font-family="ui-monospace,Consolas,monospace">docs/</text>
+  <text x="800" y="496" fill="#9DA7B3" font-size="13">方案、文章、任何叙述性材料</text>
+
+  <!-- ==================== upgrade-chain arrows ==================== -->
+  <line x1="580" y1="200" x2="700" y2="200" stroke="#3FB950" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="588" y="190" fill="#3FB950" font-size="12" font-weight="600">做过两次？→ SOP</text>
+
+  <line x1="580" y1="324" x2="700" y2="324" stroke="#A371F7" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="582" y="314" fill="#A371F7" font-size="12" font-weight="600">半年后问为什么 →</text>
+
+  <line x1="580" y1="500" x2="700" y2="424" stroke="#8B949E" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="590" y="472" fill="#9DA7B3" font-size="12" font-weight="600">反复踩？→ 规则</text>
+
+  <!-- ==================== retrieval band ==================== -->
+  <rect x="44" y="566" width="1192" height="186" rx="12" fill="#0F1420" stroke="#3D4657" stroke-width="1.6"/>
+  <text x="68" y="598" fill="#E6EDF3" font-size="15" font-weight="700">按需检索 · 默认零注入 —— 遗忘是免费的</text>
+
+  <rect x="68" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="86" y="644" fill="#E3A008" font-size="13" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">grep "🚧|⏸" INDEX.md</text>
+  <text x="86" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">现在做到哪了？</text>
+  <text x="86" y="692" fill="#9DA7B3" font-size="12">进度面板，零维护</text>
+
+  <rect x="360" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="378" y="644" fill="#4C8DFF" font-size="13" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">grep -i 超时 INDEX.md</text>
+  <text x="378" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">以前处理过没？</text>
+  <text x="378" y="692" fill="#9DA7B3" font-size="12">命中 → 读那个任务的总结</text>
+
+  <rect x="652" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="670" y="644" fill="#3FB950" font-size="13" font-family="ui-monospace,Consolas,'Microsoft YaHei',monospace">cat sop/目录.md</text>
+  <text x="670" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">怎么做 X？</text>
+  <text x="670" y="692" fill="#9DA7B3" font-size="12">照 runbook 跑，别重新探索</text>
+
+  <rect x="944" y="616" width="272" height="108" rx="10" fill="#131A28" stroke="#2A3342"/>
+  <text x="962" y="644" fill="#A371F7" font-size="13" font-family="ui-monospace,Consolas,monospace">ls docs/decisions/</text>
+  <text x="962" y="670" fill="#E6EDF3" font-size="13.5" font-weight="600">为什么是这样？</text>
+  <text x="962" y="692" fill="#9DA7B3" font-size="12">每个选择只有一个现行答案</text>
+
+  <text x="48" y="782" fill="#6E7A8A" font-size="12">github.com/hjxccc/cairn · 几百行可 grep 的纯文本就是整个记忆系统 —— 这就是重点</text>
+</svg>

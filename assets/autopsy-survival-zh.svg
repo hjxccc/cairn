@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="560" viewBox="0 0 1080 560" font-family="-apple-system,'PingFang SC','Microsoft YaHei','Noto Sans SC','Segoe UI',Roboto,sans-serif">
+  <rect width="1080" height="560" rx="14" fill="#0B0E14"/>
+
+  <!-- title -->
+  <text x="48" y="60" fill="#E6EDF3" font-size="24" font-weight="700">尸检 · 同一批任务里，谁被真正用起来了</text>
+  <text x="48" y="88" fill="#9DA7B3" font-size="14.5">一个重型 AI 工作流框架，5 个月 / 148 个任务后的实际使用率（越长=用得越多）</text>
+
+  <!-- axis baseline -->
+  <text x="48" y="132" fill="#6E7A8A" font-size="12" letter-spacing="1">组件（约定 / 机器）</text>
+  <text x="460" y="132" fill="#6E7A8A" font-size="12" letter-spacing="1">被用起来的比例</text>
+
+  <!-- bar 1: dated task dirs (convention) -->
+  <text x="48" y="176" fill="#E6EDF3" font-size="15" font-weight="600">日期任务目录</text>
+  <text x="180" y="176" fill="#3FB950" font-size="12.5">约定</text>
+  <rect x="460" y="160" width="550" height="26" rx="5" fill="#3FB950"/>
+  <text x="478" y="178" fill="#0B0E14" font-size="14" font-weight="700">148 / 148 · 100%　天天在用</text>
+
+  <!-- bar 2: lifecycle state files (machine) -->
+  <text x="48" y="236" fill="#E6EDF3" font-size="15" font-weight="600">生命周期状态文件</text>
+  <text x="204" y="236" fill="#F0716B" font-size="12.5">机器</text>
+  <rect x="460" y="220" width="37" height="26" rx="5" fill="#F0716B"/>
+  <text x="510" y="238" fill="#9DA7B3" font-size="13.5">10 / 148 · 7%　（task.json/.current-task，指针过期数周）</text>
+
+  <!-- bar 3: JSONL injection (machine) -->
+  <text x="48" y="296" fill="#E6EDF3" font-size="15" font-weight="600">按任务 JSONL 上下文注入</text>
+  <text x="252" y="296" fill="#F0716B" font-size="12.5">机器</text>
+  <rect x="460" y="280" width="8" height="26" rx="3" fill="#F0716B"/>
+  <text x="480" y="298" fill="#9DA7B3" font-size="13.5">2 / 148 · 1%　（148 个任务里只有 2 个用过）</text>
+
+  <!-- other machines strip -->
+  <line x1="48" y1="342" x2="1032" y2="342" stroke="#1C2430" stroke-width="1"/>
+  <text x="48" y="374" fill="#9DA7B3" font-size="14" font-weight="600">其他机器同样空转：</text>
+  <text x="48" y="400" fill="#9DA7B3" font-size="13.5">· agent 流水线（plan→implement→check→debug）第 1 个月后废弃</text>
+  <text x="48" y="424" fill="#9DA7B3" font-size="13.5">· 会话 journal 5 个月共写 7 行　· 每次注入的 22KB 工作流文档，描述了一个没人走的流程</text>
+
+  <!-- takeaway -->
+  <rect x="48" y="446" width="984" height="66" rx="10" fill="#0F1420" stroke="#2A3342"/>
+  <text x="68" y="478" fill="#E6EDF3" font-size="15" font-weight="700">规律：凡是需要纪律去喂养的机器，都空转烂掉；活下来的只有"一个文件夹 + 一个习惯"。</text>
+  <text x="68" y="500" fill="#9DA7B3" font-size="13.5">cairn = 活下来的那 20% 的提炼 —— 只保留不喂养也能活的约定：markdown + git + 一条 grep。</text>
+
+  <text x="48" y="540" fill="#6E7A8A" font-size="12">github.com/hjxccc/cairn · 数据来自一次真实的框架使用审计，非合成</text>
+</svg>
