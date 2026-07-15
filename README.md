@@ -55,10 +55,14 @@ Six kinds of project knowledge, one shared pattern (*one-line index + detail fil
 │   ├── pitfalls.md           # one line per pitfall, append when bitten
 │   └── <topic>.md            # conventions too big for AGENTS.md — pointer there, read on demand
 ├── docs/decisions/           # lightweight ADRs with supersede links
-└── scripts/mktmp.sh          # create a task dir in one command
+└── scripts/
+    ├── mktmp.sh              # create a task dir in one command
+    └── doctor.sh            # flag stale 🚧 markers & dangling INDEX refs
 ```
 
 Your whole "project memory" is greppable text. `grep 🚧 INDEX.md` is your progress dashboard. `grep -i payment INDEX.md` is your "have we solved this before?".
+
+The one failure mode a folder-and-a-habit still has is a `🚧` marker that quietly goes stale (the same way lifecycle pointers rot). `./.cairn/scripts/doctor.sh` is a ~90-line zero-dependency bash check that flags exactly two things: in-flight markers whose task hasn't been touched in N days (default 14), and markers pointing at a task dir that no longer exists. It stays *out* of the session hook on purpose — you run it when you want, not every conversation. Across many repos: `for d in */.cairn; do (cd "$d/.." && ./.cairn/scripts/doctor.sh); done`.
 
 ![how the trail works](assets/architecture.svg)
 
@@ -127,7 +131,7 @@ Don't backfill. Half-finished migrations are worse than none. Index forward only
 ## Roadmap
 
 - [ ] PowerShell-native install for Windows (Git Bash works today)
-- [ ] `cairn doctor` — one script to spot stale 🚧 markers and index drift
+- [x] `doctor.sh` — spots stale 🚧 markers and dangling INDEX refs (zero-dep bash, opt-in, not in the session hook)
 - [ ] Claude Code plugin packaging
 - [ ] Example gallery from real projects
 
