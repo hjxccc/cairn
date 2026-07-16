@@ -112,7 +112,11 @@ The one failure mode a folder-and-a-habit still has is a `🚧` marker that quie
 
 **See it in action:** [examples/sample-trail](examples/sample-trail) — a fictional (fully anonymized) two-week trail from a payments team: seven tasks, a retry-storm postmortem, a runbook with a pre-check added after a near-miss, an in-place pitfall revision, and a "why idempotency keys, not Redis locks" decision with the rejected options spelled out. The whole thing is ~150 lines of markdown.
 
-## The autopsy that started this
+## Why it's shaped this way
+
+From what actually survived, to the principles that follow, to the external grounding:
+
+### The autopsy that started this
 
 We ran a heavy AI workflow framework (the middle column above) on a production multi-repo project for **5 months and 148 tasks**. Then we audited what was actually used:
 
@@ -133,7 +137,7 @@ We ran a heavy AI workflow framework (the middle column above) on a production m
 
 cairn distills what actually stayed in use — dated task folders, scratch + the root-guard hook, plain-markdown runbooks — plus the three pieces the autopsy showed were missing (decision records, a feedback loop, pitfall revisions). Full story in [docs/philosophy.md](docs/philosophy.md).
 
-## The six principles
+### The six principles
 
 1. **The trail lives in the repo, not in a tool.** Markdown + git is the only persistence layer. Built-in agent memory is locked to one machine, keyed to an absolute path, invisible to your team — and its index overflows.
 2. **A task is a dated folder.** Creating one is a single command. No lifecycle state machine, no required fields.
@@ -142,7 +146,7 @@ cairn distills what actually stayed in use — dated task folders, scratch + the
 5. **Retrieve on demand, inject nothing.** Remembering too much is a real failure mode: context stuffing rots. Forgetting = not retrieving. It costs zero.
 6. **Conventions over machinery; state lives on the task.** Any mechanism that needs discipline to feed will die. Progress markers live in the index and in the task's own `progress.md` — never in a separate pointer file (ours went stale in two weeks). If a maintenance action takes more than 2 minutes, the design is wrong.
 
-## Grounded, not vibes
+### Grounded, not vibes
 
 The six-type structure maps onto the standard cognitive taxonomy for LLM agents ([CoALA](https://arxiv.org/abs/2309.02427)): task trail = episodic memory, pitfalls/specs = semantic, SOPs = procedural, and the INDEX line is the reflection/compression layer from Generative Agents. The upgrade chain — *task → SOP → skill, pitfall → rule* — is memory consolidation, the "curator" pattern.
 
@@ -153,7 +157,7 @@ On the engineering side it's the repo-native minimal version of practices large 
 | | cairn |
 |---|---|
 | **Spec-driven frameworks** (Spec Kit, BMAD, ...) | Those orchestrate *planning*; cairn records *what actually happened*. No 5-docs-per-feature ceremony. Use both if you like. |
-| **Agent issue trackers** (Beads) | Beads is a dependency-graph DB for parallel agent execution. cairn is human-readable archaeology: what/why/how, in files you can read in five years. |
+| **Agent issue trackers** (Beads) | Beads is a dependency-graph DB for parallel agent execution. cairn records the what/why/how as human-readable trails, in plain files. |
 | **Markdown kanban** (Backlog.md) | Closest cousin. Backlog.md manages *future* work (boards, statuses); cairn manages *past* knowledge (trails, SOPs, decisions, pitfalls) with a thin progress layer. |
 | **Built-in agent memory** | Machine-local, path-locked, not in git, index overflows. cairn keeps team assets in the repo and personal trails portable. |
 
