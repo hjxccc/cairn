@@ -71,7 +71,7 @@ Not better on every axis — a different cost model:
 | **cairn's cost · retrieval** | — | — | literal keyword match, not semantic: a rephrase can miss — tags + the small index are the backstop, but no guaranteed hit |
 | **cairn's cost · discipline** | — | — | convention, not runtime enforcement: the wrap-up line has to actually get written and the skill actually loaded, or the memory has gaps |
 
-A heavy framework's auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
+A heavy framework's auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session ([measured token cost →](docs/token-cost.md)).
 
 ## What it manages
 

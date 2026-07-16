@@ -114,29 +114,14 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 | always-on rules | CLAUDE.md / AGENTS.md (keep <200 lines) | ✅ |
 | designs/write-ups | `docs/` | ✅ |
 
-## 7. Bootstrap a new repo ("install cairn")
+## 7. Bootstrap & recovery — on-demand appendix
 
-**Fast path — one command, deterministic. Do NOT hand-create the tree file-by-file (that's slow and error-prone):**
+Two situations that **don't happen often**; their details live in `setup-and-recovery.md` (kept out of the every-trigger SKILL body to save tokens). When you hit one, **read that appendix first**:
 
-```bash
-./install.sh <repo>          # from the cairn checkout; idempotent, never overwrites
-```
+- **Install / bootstrap cairn** ("install cairn", "set up work-trail conventions"): fast path is `./install.sh <repo>` (idempotent, never overwrites); the appendix has the two follow-up steps, the 🔴 append-only settings merge, and the manual fallback.
+- **Troubleshooting cairn** (mktmp / INDEX / guard not firing / dashboard noise / a committed personal-layer file / broken settings merge — the if-fail table) — all in the appendix.
 
-It scaffolds the whole `.cairn/` structure, copies templates/scripts/hook, and patches `.gitignore` in one shot. See `examples/sample-trail/` for what a filled-in trail looks like across all six content types. Then paste `templates/agent-snippet.md` into the repo's agent rules file. 🔴 CHECKPOINT: merge `hooks/settings-hooks.json` into `.claude/settings.json` **append-only** — read the existing file first; wholesale overwrite kills the project's existing hooks. Verify: writing `_test.py` at root gets blocked; `mktmp.sh demo` creates a dir. Manual mkdir only as a fallback if install.sh is unreachable (§8).
-
-## 8. If it fails (fallbacks)
-
-| Symptom | Fix |
-|---|---|
-| mktmp.sh missing / not executable | `mkdir -p <base>/tasks/MM-DD-<topic>/scratch` by hand; re-copy the script from the cairn checkout after |
-| INDEX.md missing / deleted | rebuild the header from `templates/INDEX.md`, stack this task's line; do not backfill history |
-| root-scratch guard not firing | check the PreToolUse entry in `.claude/settings.json` and that the hook file exists; restore whichever is missing |
-| dashboard grep matches header text | use the anchored form `grep "^- 🚧\|^- ⏸"`; still noisy = an entry doesn't start with `- `, fix its format |
-| same-day same-topic dir already exists | mktmp reuses it — use it, never create a variant dir |
-| personal-layer file was committed in the past | `git rm --cached <file>` (keeps the working copy) restores the ignore |
-| project's other hooks broke after settings merge | it was overwritten wholesale — restore settings from git, redo an append-only merge |
-
-## 9. Hard rules
+## 8. Hard rules
 
 - Zero throwaway files at repo root; `scratch/` and >1MB data files never in git.
 - Personal layer not committed by default; sharing must be explicit `git add -f`, never bulk.
