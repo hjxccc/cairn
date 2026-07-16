@@ -58,7 +58,7 @@ Working with an AI agent, these three things bite every day:
 
 Not better on every axis — a different cost model:
 
-| | Manual rules file (`.cursorrules` / `CLAUDE.md`) | Auto-injection framework | **cairn** |
+| | Manual rules file (`.cursorrules` / `CLAUDE.md`) | Heavy workflow framework | **cairn** |
 |---|---|---|---|
 | Cross-session memory | none — you re-brief every time | pre-injected (present, but fills context) | trail in the repo, fetched only when you retrieve |
 | Session-start cost | light | a spec injected every session (one project measured ~22KB) | ~1.5KB of rules + a tiny pointer |
@@ -69,7 +69,7 @@ Not better on every axis — a different cost model:
 | Platform coupling | tied to one tool | needs a framework protocol + per-platform adapters | core is markdown, platform-independent |
 | **cairn's cost (honest)** | — | — | **retrieval is lexical, not semantic (a reworded search can miss → keyword tags + the small index backstop it); it runs on convention, not runtime enforcement (the wrap-up line has to actually get written)** |
 
-Auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
+A heavy framework's auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
 
 ## What it manages
 
@@ -112,7 +112,7 @@ The one failure mode a folder-and-a-habit still has is a `🚧` marker that quie
 
 ## The autopsy that started this
 
-We ran a full-featured AI workflow framework — the "auto-injection" category above — on a production multi-repo project for **5 months and 148 tasks**. Then we audited what was actually used:
+We ran a heavy AI workflow framework (the middle column above) on a production multi-repo project for **5 months and 148 tasks**. Then we audited what was actually used:
 
 ![the autopsy — actual adoption of each component across the same tasks](assets/autopsy-survival.svg)
 
