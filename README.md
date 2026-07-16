@@ -71,7 +71,9 @@ Not better on every axis — a different cost model:
 | **cairn's cost · retrieval** | — | — | literal keyword match, not semantic: a rephrase can miss — tags + the small index are the backstop, but no guaranteed hit |
 | **cairn's cost · discipline** | — | — | convention, not runtime enforcement: the wrap-up line has to actually get written and the skill actually loaded, or the memory has gaps |
 
-A heavy framework's auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session ([measured token cost →](docs/token-cost.md)).
+A heavy framework's auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
+
+> **The per-session bill (measured):** cairn's always-on cost is **~350 tok** (a 5-line preamble + your live panel); a heavy framework injects **~5,000–7,000 tok** of static spec every session — **~15–20× more**. cairn's SKILL loads once (~3–4.3k) only when you actually do cairn work, then stops charging. Measure your own: `./.cairn/scripts/cairn-cost.sh`. ([full measurements & method →](docs/token-cost.md))
 
 ## What it manages
 
