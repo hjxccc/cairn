@@ -66,14 +66,14 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 
 **Locate the project first (multi-project rule)**: walk up from the cwd to the **nearest** `.cairn/` or `.trellis/` — the task belongs to that project (same scoping as `.git`; one instance per project, no cross-pollution). Parent repo + sub-repos: cross-repo tasks go to the parent; single-repo tasks go to that sub-repo if it has cairn installed, else fall up to the parent. Nothing found → offer to bootstrap. 🔴 CHECKPOINT: when one session touches multiple projects, state the target project before ANY write — a stone stacked in the wrong project is worse than none.
 
-**Start**: `cd "$(./<base>/scripts/mktmp.sh <topic>)"` — whichever project's mktmp you call is where the task lands. If the topic feels familiar, do §5 history lookup first.
+**Start**: `cd "$(./<base>/scripts/mktmp.sh <topic>)"` — whichever project's mktmp you call is where the task lands. It also stacks a `🚧 <slug> — 待补结论/TBD` **placeholder** on top of INDEX, so a forgotten wrap-up shows up as visible debt instead of a silent gap (you rewrite that line into a real conclusion at wrap-up). If the topic feels familiar, do §5 history lookup first.
 
 **Work**: all throwaway artifacts into `scratch/` (the root-guard hook enforces this).
 
 **Log progress** (user says "log progress" / natural session end on long tasks): create/update `progress.md` (goal / done / next / blocked, all dated; incremental, never delete). Ensure the task's INDEX line starts with 🚧 (in progress) or ⏸ (waiting on external).
 
 **Wrap up** (user says "wrap up" / "we're done"; total ≤2 min):
-1. Stack one line on **top** of `tasks/INDEX.md` (or rewrite the existing 🚧 line and drop the marker): `- MM-DD-<topic> — one-sentence conclusion [kw1][kw2]` (≤120 chars, conclusion not topic-restatement).
+1. **Rewrite the 🚧 placeholder line** mktmp left on top of `tasks/INDEX.md` into the conclusion, and drop the marker: `- MM-DD-<topic> — one-sentence conclusion [kw1][kw2]` (≤120 chars, conclusion not topic-restatement). Write it **searchable** — the words you'd grep for later: the user's phrasing *and* the technical anchor (error text / table / function), with synonyms & aliases in `[keywords]`. (If mktmp didn't run, just stack a fresh line on top.)
 2. If reusable: write a summary md at the task's top level (personal layer; `git add -f` if team-worthy).
 3. **Two-question self-check** (the feedback hook): ① *Will we do this again?* → create/update an SOP; bitten → one pitfall line. ② *Will someone ask "why" in six months?* → register a decision.
 
@@ -95,9 +95,10 @@ Distilled from a 5-month / 148-task autopsy of a heavyweight AI workflow framewo
 ## 5. History lookup ("have we dealt with this?")
 
 1. `grep -i <keyword> <base>/tasks/INDEX.md`
-2. Also check `sop/index.md`, `spec/pitfalls.md`, `docs/decisions/` (it may have graduated).
-3. Hit → read that task's summary/progress (never dig through `scratch/`).
-4. Not in INDEX ≠ never done (no backfill): fall back to `ls <base>/tasks/ | grep <kw>`.
+2. **No hit? Don't stop — widen the query, not the machinery** (query-time, no stored synonym list): generate 4–6 variants of what you're after — the symptom, the business noun, the technical identifier / error string, and EN↔CN — then OR them: `grep -iE 'timeout|超时|429|retry.?storm' <base>/tasks/INDEX.md`. Lexical grep only finds words you actually type, so type the synonyms. (This is why wrap-up lines carry aliases in `[keywords]`.)
+3. Also check `sop/index.md`, `spec/pitfalls.md`, `docs/decisions/` (it may have graduated).
+4. Hit → read that task's summary/progress (never dig through `scratch/`).
+5. Not in INDEX ≠ never done (no backfill): fall back to `ls <base>/tasks/ | grep <kw>`.
 
 ## 6. Routing table ("where does this go?")
 
