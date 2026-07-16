@@ -9,7 +9,7 @@ cairn's core bet is **pay at retrieval, not on every session.** This page puts r
 | | cairn | Heavy workflow framework |
 |---|---|---|
 | **Always-on, every session** | **~350 tok** — a ~5-line preamble + your live 🚧/⏸ panel | **~5,000–7,000 tok** — a static spec injected every session |
-| **When you actually do the work** | SKILL loads once (~3.5–4.5k tok) + a grep + one file read | already paid, whether you use it or not |
+| **When you actually do the work** | SKILL loads once (~3–4.3k tok) + a grep + one file read | already paid, whether you use it or not |
 | **Grows over time with** | number of in-flight tasks (bounded — wrap up to reset) | the framework's injected surface |
 | **You can measure it** | `cairn-cost.sh` (one command, zero-dep) | — |
 
@@ -23,7 +23,7 @@ The heavy-framework figure is from a real audit: one project injected **~22 KB o
 - **≈ ~350 tok total**, most of which is your actual task state.
 
 ### On-demand — paid only when you do cairn work
-- **SKILL load on trigger**: ~3.5–4.5k tok, **once per session that uses cairn** — not every session. The rarely-needed install/troubleshooting content was split into an on-demand appendix, so common operations (start / wrap up / history / SOP) load ~800–900 tok less.
+- **SKILL load on trigger**: ~3–4.3k tok, **once per session that uses cairn** — not every session. The rarely-needed install/troubleshooting content was split into an on-demand appendix, so common operations (start / wrap up / history / SOP) load ~600–800 tok less (measured: main body 8.6k chars ≈ 3.3–4.3k tok Chinese / 2.9–3.5k tok English; the ~630–805 tok appendix loads only on install/troubleshoot).
 - **A history grep**: a handful of INDEX lines, ~100–300 tok.
 - **Reading one task summary / progress**: ~500–1,500 tok, and only the one file you matched — never the whole archive.
 
