@@ -6,7 +6,7 @@
   <circle cx="52" cy="52" r="6" fill="#FF5F56"/>
   <circle cx="72" cy="52" r="6" fill="#FFBD2E"/>
   <circle cx="92" cy="52" r="6" fill="#27C93F"/>
-  <text x="120" y="57" fill="#9DA7B3" font-size="14" font-weight="600">you just do the work — the trail is left automatically, one search brings it back</text>
+  <text x="120" y="57" fill="#9DA7B3" font-size="14" font-weight="600">you just do the work — the trail is left automatically, the agent brings it back next time</text>
   <line x1="24" y1="72" x2="1016" y2="72" stroke="#1C2430" stroke-width="1"/>
 
   <!-- 1 start -->
@@ -34,10 +34,10 @@
   <circle cx="60" cy="416" r="13" fill="#A371F7"/>
   <text x="60" y="421" fill="#0B0E14" font-size="14" font-weight="800" text-anchor="middle">4</text>
   <text x="88" y="414" fill="#E6EDF3" font-size="16" font-weight="700">3 weeks later · new session / a teammate / another agent</text>
-  <text x="88" y="440" fill="#9DA7B3" font-size="14">search "timeout" and the line comes back <tspan fill="#3FB950" font-weight="700">→ found in seconds, reuse it, don't re-step</tspan></text>
+  <text x="88" y="440" fill="#9DA7B3" font-size="14">you mention "timeout" — the agent digs the line back out <tspan fill="#3FB950" font-weight="700">→ no path to remember, just reuse</tspan></text>
 
   <!-- payoff strip -->
   <line x1="48" y1="486" x2="992" y2="486" stroke="#1C2430" stroke-width="1"/>
-  <text x="48" y="522" fill="#E6EDF3" font-size="15" font-weight="700">nothing to decide where things go · the mess auto-files · wrap to one line · one search brings it back</text>
+  <text x="48" y="522" fill="#E6EDF3" font-size="15" font-weight="700">nothing to decide where things go · the mess auto-files · wrap to one line · the agent brings it back next time</text>
   <text x="48" y="550" fill="#9DA7B3" font-size="13.5">the whole "project memory" is searchable plain text — no runtime, no database, no state machine that expires.</text>
 </svg>

@@ -2,7 +2,7 @@
 
 # 🪨 cairn
 
-> An AI agent's memory shouldn't live in the chat — it should live in the repo.
+> A new chat starts from nothing — cairn keeps the project's memory in the repo, so your agent picks it up instead of you re-explaining.
 
 **cairn** is a markdown-native memory & progress layer for AI coding agents (Claude Code, Cursor, Codex, ...). No framework. No runtime. No database. Just directory conventions that keep working after the novelty wears off.
 
@@ -10,7 +10,7 @@ A *cairn* is a stack of stones hikers leave on a trail. It doesn't tell you how 
 
 [中文文档 →](README.zh-CN.md)
 
-![cairn — one full loop: start a task → scratch → wrap to one line → grep it back](assets/how-it-works.svg)
+![cairn — one full loop: start a task → scratch → wrap to one line → picked back up next time](assets/how-it-works.svg)
 
 ## Quick start
 
@@ -44,15 +44,15 @@ cairn/install.sh /path/to/your-project          # idempotent, never overwrites
 Working with an AI agent, these three things bite every day:
 
 **① New chat, and the AI has amnesia.** Project context, team conventions, what you actually concluded last time — it's all in the previous conversation, and a fresh session can't see any of it, so you brief it from scratch again.
-→ cairn writes these **into the repo** (`INDEX.md`, task summaries, pitfalls, SOPs are all files): sessions close, files don't — a new session just `grep`s the line back.
+→ cairn writes these **into the repo** (`INDEX.md`, task summaries, pitfalls, SOPs are all files): sessions close, files don't — in a new session the agent pulls the line back, so you don't re-brief.
 
 **② Halfway through, a new session and "where was I?"** A long task spans days and several conversations, and progress has nowhere solid to live (put it in a pointer file and it's stale in two weeks).
-→ cairn keeps progress **on the task's own `progress.md`** with a 🚧 in INDEX: one `grep "^- 🚧"` shows everything unfinished, so you pick up from last time's "next", and `doctor.sh` (read-only) catches drift.
+→ cairn keeps progress **on the task's own `progress.md`** with a 🚧 in INDEX: a new session auto-surfaces everything unfinished (the 🚧 panel), so you pick up from last time's "next", and `doctor.sh` (read-only) catches drift.
 
 **③ Last month's landmine, stepped on again.** You hit it, a teammate hit it, another AI session is still hitting it — because nobody wrote it where it can be found.
-→ cairn makes **pitfalls one-liners and SOPs runnable**: grep the history before acting, reuse the hit instead of re-clearing the same mine.
+→ cairn makes **pitfalls one-liners and SOPs runnable**: the agent checks the history before acting, reusing the hit instead of re-clearing the same mine.
 
-> One thing in common: **an AI's memory shouldn't live in the chat — it should live in the repo.** Chats are volatile; the repo rides along with git. cairn doesn't stuff history into every session (slow and bloated); it leaves the trail in the repo and `grep`s it on demand — why grep and not a vector store is [decision 004](docs/decisions/004-grep-over-vector-search.md).
+> One thing in common: **a session ends, the repo doesn't forget.** Chats are volatile; the repo rides along with git. cairn doesn't stuff history into every session (slow and bloated); it leaves the trail in the repo and the agent `grep`s it on demand — why grep and not a vector store is [decision 004](docs/decisions/004-grep-over-vector-search.md).
 
 ## cairn vs the usual approaches
 
@@ -63,11 +63,11 @@ Not better on every axis — a different cost model:
 | Cross-session memory | none — you re-brief every time | pre-injected (present, but fills context) | trail in the repo, fetched only when you retrieve |
 | Session-start cost | light | a spec injected every session (one project measured ~22KB) | ~1.5KB of rules + a tiny pointer |
 | Progress / state | nowhere to put it | framework tracks lifecycle state (can go stale) | on the task's `progress.md` + a 🚧 in INDEX |
-| Finding past work | scroll the chat | pre-injected, the line you want is buried | `grep` hits (fast path) → miss? read the small index |
+| Finding past work | scroll the chat | pre-injected, the line you want is buried | agent `grep` hits (fast path) → miss? read the small index |
 | Setup | paste a file | install a framework + config + adapters | one command, or one sentence to your agent |
 | Team sharing | one file, everyone's differs | shared inside the framework | layered: personal trail gitignored, team assets committed |
 | Platform coupling | tied to one tool | needs a framework protocol + per-platform adapters | core is markdown, platform-independent |
-| **cairn's cost (honest)** | — | — | **you have to grep; lexical search can miss (mitigated by keyword tags + reading the small index); conventions need a human to follow (stack one line at wrap-up)** |
+| **cairn's cost (honest)** | — | — | **retrieval is lexical, not semantic (a reworded search can miss → keyword tags + the small index backstop it); it runs on convention, not runtime enforcement (the wrap-up line has to actually get written)** |
 
 Auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
 
@@ -102,7 +102,7 @@ Six kinds of project knowledge, one shared pattern (*one-line index + detail fil
     └── doctor.sh            # flag stale markers, dangling refs, dup slugs, dead links
 ```
 
-Your whole "project memory" is greppable text. `grep 🚧 INDEX.md` is your progress dashboard. `grep -i payment INDEX.md` is your "have we solved this before?".
+Your whole "project memory" is greppable text — when the agent needs it, `grep 🚧 INDEX.md` is the progress dashboard, `grep -i payment INDEX.md` is "have we solved this before?".
 
 The one failure mode a folder-and-a-habit still has is a `🚧` marker that quietly goes stale (the same way lifecycle pointers rot). `./.cairn/scripts/doctor.sh` is a zero-dependency bash check that flags four kinds of drift: in-flight markers whose task hasn't been touched in N days (default 🚧 14 / ⏸ 60), markers pointing at a task dir that no longer exists, duplicate slugs, and dead links in the index files. It stays *out* of the session hook on purpose — you run it when you want, not every conversation. Across many repos: `for d in */.cairn; do (cd "$d/.." && ./.cairn/scripts/doctor.sh); done`.
 
@@ -112,7 +112,7 @@ The one failure mode a folder-and-a-habit still has is a `🚧` marker that quie
 
 ## The autopsy that started this
 
-We ran a full-featured AI workflow framework on a production multi-repo project for **5 months and 148 tasks**. Then we audited what was actually used:
+We ran a full-featured AI workflow framework — the "auto-injection" category above — on a production multi-repo project for **5 months and 148 tasks**. Then we audited what was actually used:
 
 ![the autopsy — actual adoption of each component across the same tasks](assets/autopsy-survival.svg)
 
