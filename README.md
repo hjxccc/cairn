@@ -62,12 +62,14 @@ Not better on every axis — a different cost model:
 |---|---|---|---|
 | Cross-session memory | none — you re-brief every time | pre-injected (present, but fills context) | trail in the repo, fetched only when you retrieve |
 | Session-start cost | light | a spec injected every session (one project measured ~22KB) | ~1.5KB of rules + a tiny pointer |
-| Progress / state | nowhere to put it | framework tracks lifecycle state (can go stale) | on the task's `progress.md` + a 🚧 in INDEX |
+| Context as history grows | it all piles into the rules file; context grows with it | injected context grows with the rules/state you enable | history stays in the repo; startup context doesn't grow with it — a match reads just that one file |
+| Progress / state | nowhere to put it | framework tracks lifecycle state (can go stale) | on the task's `progress.md` + a 🚧 in INDEX (`doctor.sh` flags stale ones) |
 | Finding past work | scroll the chat | pre-injected, the line you want is buried | agent `grep` hits (fast path) → miss? read the small index |
 | Setup | paste a file | install a framework + config + adapters | one command, or one sentence to your agent |
 | Team sharing | one file, everyone's differs | shared inside the framework | layered: personal trail gitignored, team assets committed |
 | Platform coupling | tied to one tool | needs a framework protocol + per-platform adapters | core is markdown, platform-independent |
-| **cairn's cost (honest)** | — | — | **retrieval is lexical, not semantic (a reworded search can miss → keyword tags + the small index backstop it); it runs on convention, not runtime enforcement (the wrap-up line has to actually get written)** |
+| **cairn's cost · retrieval** | — | — | literal keyword match, not semantic: a rephrase can miss — tags + the small index are the backstop, but no guaranteed hit |
+| **cairn's cost · discipline** | — | — | convention, not runtime enforcement: the wrap-up line has to actually get written and the skill actually loaded, or the memory has gaps |
 
 A heavy framework's auto-injection wins when you want zero-effort loading and a strongly enforced process. A single rules file wins for a dead-simple, one-file setup. cairn wins when the work is improvised — debugging, backfills, firefighting — and you want durable, greppable, team-shareable memory with nothing to feed. The bet: pay at retrieval, not on every session.
 
