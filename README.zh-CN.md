@@ -47,7 +47,7 @@ cairn/install.sh /path/to/你的项目          # 幂等，不覆盖已有文件
 → cairn 把这些**写进仓库**（`INDEX.md`、任务总结、坑账、SOP 都是文件）：会话会关，文件不丢，新会话里 agent 自己把那条翻回来，不用你重讲。
 
 **② 活干到一半，换个会话就"我上次弄到哪了？"** 长任务跨好几天、好几次对话，进度没个准地方放（记在会过期的指针文件里，两周后就没人信了）。
-→ cairn 把进度**记在任务自己的 `progress.md`**、INDEX 行首标个 🚧：新会话一开，hook 自动把所有没干完的活列给 agent，接着上次的"下一步"往下走，漂移了有只读的 `doctor.sh` 兜底。
+→ cairn 把进度**记在任务自己的 `progress.md`**、INDEX 行首标个 🚧：新会话里 agent 一条 `grep "^- 🚧"` 就列出所有没干完的活，读对应 `progress.md` 的"下一步"接着走，漂移了有只读的 `doctor.sh` 兜底。
 
 **③ 上个月踩过的坑，这个月又踩一遍。** 你踩过、同事踩过、另一个 AI 会话还在踩——因为没人把它记在找得到的地方。
 → cairn 让**坑账一行一坑、SOP 能照跑**：动手前 agent 先翻一遍历史，踩过的直接复用，不重新趟一遍雷。
@@ -131,7 +131,7 @@ cairn/install.sh /path/to/你的项目          # 幂等，不覆盖已有文件
 
 **规律**：凡是需要纪律去喂养机器的，都死了；凡是"一个文件夹 + 一个习惯"的，都活了。真实的 agent 工作是即兴的——排障、补数、救火——不是 PRD 驱动的流水线。
 
-cairn 就是活下来的 20% 的提炼，外加尸检暴露出缺失的三块（决策记录、反馈闭环、坑账修订）。完整故事见 [docs/philosophy.md](docs/philosophy.md)。
+cairn 提炼的就是这次审计里**持续在用的那几样**——日期任务目录、scratch + 拦截 hook、纯 markdown runbook；再补上尸检暴露缺失的三块（决策记录、反馈闭环、坑账修订）。完整故事见 [docs/philosophy.md](docs/philosophy.md)。
 
 ## 六条原则
 
@@ -144,7 +144,7 @@ cairn 就是活下来的 20% 的提炼，外加尸检暴露出缺失的三块（
 
 ## 有依据，不是玄学
 
-六类结构与 LLM agent 认知架构标准分类 [CoALA](https://arxiv.org/abs/2309.02427) 一一对应（任务留痕=情景记忆，坑/规约=语义记忆，SOP=程序记忆，INDEX 一行=Generative Agents 的反思压缩层）；升级链（任务→SOP→skill，坑→规则）就是记忆固化的 curator 模式（agent benchmark 实证 ~+10%）。工程侧则是 SRE runbook / blameless postmortem / ADR supersede 链 / Diátaxis 的 repo 内极简版。详见 [docs/grounding.md](docs/grounding.md)。
+六类结构可对应到 LLM agent 认知架构的标准分类 [CoALA](https://arxiv.org/abs/2309.02427)（任务留痕=情景记忆，坑/规约=语义记忆，SOP=程序记忆，INDEX 一行=Generative Agents 的反思压缩层）；升级链（任务→SOP→skill，坑→规则）对应记忆固化的 curator 模式。工程侧则是 SRE runbook / blameless postmortem / ADR supersede 链 / Diátaxis 的 repo 内极简版。详见 [docs/grounding.md](docs/grounding.md)。
 
 ## 与同类的区别
 

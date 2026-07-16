@@ -36,7 +36,7 @@
   <!-- takeaway -->
   <rect x="48" y="446" width="984" height="66" rx="10" fill="#0F1420" stroke="#2A3342"/>
   <text x="68" y="478" fill="#E6EDF3" font-size="15" font-weight="700">The pattern: anything that needs discipline to feed rots; what survived is "a folder + a habit".</text>
-  <text x="68" y="500" fill="#9DA7B3" font-size="13.5">cairn = the surviving 20%, distilled — only conventions that live without feeding: markdown + git + one grep.</text>
+  <text x="68" y="500" fill="#9DA7B3" font-size="13.5">cairn = the conventions that stayed in use, distilled — the ones that live without feeding: markdown + git + one grep.</text>
 
   <text x="48" y="540" fill="#6E7A8A" font-size="12">github.com/hjxccc/cairn · data from a real framework-usage audit, not synthetic</text>
 </svg>

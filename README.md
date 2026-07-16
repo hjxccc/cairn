@@ -47,7 +47,7 @@ Working with an AI agent, these three things bite every day:
 → cairn writes these **into the repo** (`INDEX.md`, task summaries, pitfalls, SOPs are all files): sessions close, files don't — in a new session the agent pulls the line back, so you don't re-brief.
 
 **② Halfway through, a new session and "where was I?"** A long task spans days and several conversations, and progress has nowhere solid to live (put it in a pointer file and it's stale in two weeks).
-→ cairn keeps progress **on the task's own `progress.md`** with a 🚧 in INDEX: a new session auto-surfaces everything unfinished (the 🚧 panel), so you pick up from last time's "next", and `doctor.sh` (read-only) catches drift.
+→ cairn keeps progress **on the task's own `progress.md`** with a 🚧 in INDEX: in a new session the agent `grep`s `^- 🚧` to list everything unfinished, reads the matching `progress.md` "next", and picks up from there; `doctor.sh` (read-only) catches drift.
 
 **③ Last month's landmine, stepped on again.** You hit it, a teammate hit it, another AI session is still hitting it — because nobody wrote it where it can be found.
 → cairn makes **pitfalls one-liners and SOPs runnable**: the agent checks the history before acting, reusing the hit instead of re-clearing the same mine.
@@ -131,7 +131,7 @@ We ran a heavy AI workflow framework (the middle column above) on a production m
 
 **The pattern:** everything that required discipline to feed the machine died. Everything that was just *a folder and a habit* survived. Real agent-driven work is improvisational — debugging, backfilling, firefighting — not a PRD-driven assembly line.
 
-cairn is the surviving 20%, distilled, plus the three pieces the autopsy showed were missing. Full story in [docs/philosophy.md](docs/philosophy.md).
+cairn distills what actually stayed in use — dated task folders, scratch + the root-guard hook, plain-markdown runbooks — plus the three pieces the autopsy showed were missing (decision records, a feedback loop, pitfall revisions). Full story in [docs/philosophy.md](docs/philosophy.md).
 
 ## The six principles
 
@@ -144,7 +144,7 @@ cairn is the surviving 20%, distilled, plus the three pieces the autopsy showed 
 
 ## Grounded, not vibes
 
-The six-type structure maps 1:1 onto the standard cognitive taxonomy for LLM agents ([CoALA](https://arxiv.org/abs/2309.02427)): task trail = episodic memory, pitfalls/specs = semantic, SOPs = procedural, and the INDEX line is the reflection/compression layer from Generative Agents. The upgrade chain — *task → SOP → skill, pitfall → rule* — is memory consolidation, the "curator" pattern that shows ~+10% on agent benchmarks.
+The six-type structure maps onto the standard cognitive taxonomy for LLM agents ([CoALA](https://arxiv.org/abs/2309.02427)): task trail = episodic memory, pitfalls/specs = semantic, SOPs = procedural, and the INDEX line is the reflection/compression layer from Generative Agents. The upgrade chain — *task → SOP → skill, pitfall → rule* — is memory consolidation, the "curator" pattern.
 
 On the engineering side it's the repo-native minimal version of practices large orgs already trust: SRE runbooks (our SOP template: trigger / pre-checks / numbered steps with expected output / verify / rollback), blameless postmortems, ADRs with supersede chains, and the Diátaxis split. Details in [docs/grounding.md](docs/grounding.md).
 

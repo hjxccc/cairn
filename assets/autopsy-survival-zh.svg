@@ -36,7 +36,7 @@
   <!-- takeaway -->
   <rect x="48" y="446" width="984" height="66" rx="10" fill="#0F1420" stroke="#2A3342"/>
   <text x="68" y="478" fill="#E6EDF3" font-size="15" font-weight="700">规律：凡是需要纪律去喂养的机器，都空转烂掉；活下来的只有"一个文件夹 + 一个习惯"。</text>
-  <text x="68" y="500" fill="#9DA7B3" font-size="13.5">cairn = 活下来的那 20% 的提炼 —— 只保留不喂养也能活的约定：markdown + git + 一条 grep。</text>
+  <text x="68" y="500" fill="#9DA7B3" font-size="13.5">cairn = 提炼这次审计里持续在用的那几样 —— 不喂养也能活的约定：markdown + git + 一条 grep。</text>
 
   <text x="48" y="540" fill="#6E7A8A" font-size="12">github.com/hjxccc/cairn · 数据来自一次真实的框架使用审计，非合成</text>
 </svg>
